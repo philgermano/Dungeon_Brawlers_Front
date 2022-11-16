@@ -18,6 +18,7 @@
    Button
  } from 'react-native';
  import {useAuth0, Auth0Provider} from 'react-native-auth0';
+ import { NavigationContainer } from '@react-navigation/native';
 
  import LandingScreen from './src/screens/LandingScreen'
  
@@ -62,12 +63,14 @@
  
      
    return (
-     <SafeAreaView style={styles.safeAreaView}>
+    <NavigationContainer>
+    <SafeAreaView style={styles.safeAreaView}>
      <StatusBar barStyle={'dark-content'} backgroundColor="white" />
      <Auth0Provider domain={"dev-hvpdkc2ulh3du54f.us.auth0.com"} clientId={"U8a5c6uaXOHhuZc6DxcHwGX65Due1SWb"}>
       <Home />
     </Auth0Provider>
      </SafeAreaView>
+     </NavigationContainer>
    ); 
  };
  

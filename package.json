@@ -10,9 +10,10 @@
     "lint": "eslint .",
     "pods": "cd ios && arch -x86_64 pod install && cd ..",
     "clean": "cd android && ./gradlew clean && cd ..",
-    "devtools": "react-devtools"
+    "devtools": "open 'rndebugger://set-debugger-loc?host=localhost&port=8081'"
   },
   "dependencies": {
+    "@react-navigation/native": "^6.0.13",
     "react": "18.1.0",
     "react-native": "0.70.6",
     "react-native-auth0": "^2.15.0"
