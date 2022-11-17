@@ -1,21 +1,41 @@
 
-import React, {useCallback, useState} from 'react';
-import { StyleSheet, Text, View} from 'react-native';
+import React, { useEffect, useContext } from "react";
+import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
+import { StackActions } from "@react-navigation/native";
 
-const LoadingScreen = () => {
+import { AuthContext } from "../../context/AuthContext";
+
+function LoadingScreen({ navigation }) {
+  const { loading, loggedIn } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (loggedIn) {
+      navigation.dispatch(StackActions.replace("Account"));
+    } else if (loggedIn === false) {
+      navigation.dispatch(StackActions.replace("Login"));
+    }
+  }, [loggedIn]);
 
   return (
-    <View style={{flex: 1}}>
-            <Text>LOADINGCREESNS</Text>
+    <View style={styles.container}>
+      {loading && (
+        <React.Fragment>
+          <ActivityIndicator size="large" />
+          <View style={{ marginTop: 10 }}>
+            <Text>Please wait...</Text>
+          </View>
+        </React.Fragment>
+      )}
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  imageContainer: {
-    height: 200,
-    width: 200,
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
-})
+});
 
 export default LoadingScreen;
