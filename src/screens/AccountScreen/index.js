@@ -2,11 +2,11 @@
 import React, {useCallback, useState} from 'react';
 import { StyleSheet, Text, View} from 'react-native';
 
-const LandingScreen = () => {
+const AccountScreen = () => {
 
   return (
     <View style={{flex: 1}}>
-            <Text>LANDINGSCREESNS</Text>
+            <Text>AccountScreen</Text>
     </View>
   );
 };
@@ -16,10 +16,6 @@ const styles = StyleSheet.create({
     height: 200,
     width: 200,
   },
-  scrollView: {
-    // borderColor: 'red',
-    // borderWidth: 1,
-  }
 })
 
-export default LandingScreen;
+export default AccountScreen;
