@@ -1,21 +1,41 @@
+import React, { useContext, useEffect } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import { Button, withTheme } from "react-native-paper";
+import { StackActions } from "@react-navigation/native";
 
-import React, {useCallback, useState} from 'react';
-import { StyleSheet, Text, View} from 'react-native';
+import { AuthContext } from "../../context/AuthContext";
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation, theme }) => {
+  const { colors } = theme;
+
+  const { loggedIn } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (loggedIn) {
+      navigation.dispatch(StackActions.replace("Account"));
+    }
+  }, [loggedIn]);
+
+  const { login } = useContext(AuthContext);
 
   return (
-    <View style={{flex: 1}}>
-            <Text>LOGINSCREESNS</Text>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <Button mode="contained" onPress={() => login()}>
+        Login with Auth0
+      </Button>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  imageContainer: {
-    height: 200,
-    width: 200,
+  container: {
+    flex: 1,
+    paddingRight: 30,
+    paddingLeft: 30,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
   },
-})
+});
 
-export default LoginScreen;
+export default withTheme(LoginScreen);
