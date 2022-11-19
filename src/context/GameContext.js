@@ -32,7 +32,7 @@ const GameContextProvider = (props) => {
         }      
     }).then(res =>res.json())
     .then(resJson =>{
-        console.log('username', userData.nickname)
+        console.log('email', userData.email)
         console.log(playerRoom)
         console.log(playerHealth)
 
@@ -45,30 +45,30 @@ const GameContextProvider = (props) => {
 
   //get data for user instance of a game
   const getSaveData = async () => {
-    fetch(REACT_APP_BACKEND_URL)
+    fetch(`${REACT_APP_BACKEND_URL}/${userData.email}`)
     .then(res =>{return res.json()})
     .then(json => setGameData(json))
     .then(console.log(gameData))
   };
 
 // executed when game start screen opens happens
-useEffect(() => {
-  (async () => {
-    try {
-      if (loggedIn) {
-        const data = await getRoomData();
-        setRoomData(data);
-      }
-    } catch (err) {
-      console.log("error logging in: ", err);
-    }
-  })();
-}, [checkSave]);
+// useEffect(() => {
+//   (async () => {
+//     try {
+//       if (loggedIn) {
+//         const data = await getRoomData();
+//         setRoomData(data);
+//       }
+//     } catch (err) {
+//       console.log("error logging in: ", err);
+//     }
+//   })();
+// }, [checkSave]);
 
 
 //update the current saved data of the users game
   const updateSave = async () => {
-    fetch(REACT_APP_BACKEND_URL, {
+    fetch(`${REACT_APP_BACKEND_URL}/${userData.email}`, {
       method: 'PUT',
       body: JSON.stringify({
         username: user.username,
