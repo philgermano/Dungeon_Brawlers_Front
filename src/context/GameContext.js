@@ -71,10 +71,10 @@ const GameContextProvider = (props) => {
     fetch(`${REACT_APP_BACKEND_URL}/${userData.email}`, {
       method: 'PUT',
       body: JSON.stringify({
-        username: user.username,
-        playerLoc: playerRoom,
-        enemyLoc: enemyRoom,
-        playerHealth: playerHealth,
+        username: userData.nickname,
+        email: userData.email,
+        playerDet: { location:playerRoom, health:playerHealth},
+        enemyDet: {location:enemyRoom},
     }),
       headers:{
         'Content-Type': 'application/json'

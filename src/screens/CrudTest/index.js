@@ -9,7 +9,7 @@ import { AuthContext } from "../../context/AuthContext";
 const CrudTest = ({ navigation, theme }) => {
   const { logout, loggedIn, userData} = useContext(AuthContext);
 
-  const { gameData, CheckSave, setGameData, playerRoom, setPlayerRoom, enemyRoom, setenemyRoom, playerHealth, setPlayerHealth, checkSave, setCheckSave, saveGame, clearSave, getSaveData  } = useContext(GameContext);
+  const { gameData, CheckSave, setGameData, playerRoom, setPlayerRoom, enemyRoom, setenemyRoom, playerHealth, setPlayerHealth, checkSave, setCheckSave, saveGame, clearSave, getSaveData, updateSave  } = useContext(GameContext);
   const { colors } = theme;
 
   useEffect(() => {
