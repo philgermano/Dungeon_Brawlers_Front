@@ -88,7 +88,7 @@ useEffect(() => {
 
   const clearSave = async () => {
     try {
-      fetch(REACT_APP_BACKEND_URL + userData.email, {
+      fetch(`${REACT_APP_BACKEND_URL}/${userData.email}`, {
         method: 'DELETE', 
     })
     } catch (err) {
