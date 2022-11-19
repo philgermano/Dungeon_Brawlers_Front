@@ -10,7 +10,7 @@ function LoadingScreen({ navigation }) {
 
   useEffect(() => {
     if (loggedIn) {
-      navigation.dispatch(StackActions.replace("Account"));
+      navigation.dispatch(StackActions.replace("Crud"));
     } else if (loggedIn === false) {
       navigation.dispatch(StackActions.replace("Login"));
     }

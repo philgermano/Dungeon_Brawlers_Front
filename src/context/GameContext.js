@@ -1,35 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {  REACT_APP_BACKEND_URL } from '@env';
 
+import { AuthContext } from "./AuthContext";
 
-const RoomContext = React.createContext();
+const GameContext = React.createContext();
 
-const RoomContextProvider = (props) => {
+const GameContextProvider = (props) => {
 
-  const [gameData, setGameData] = useState(null);
+  const { logout, loggedIn, userData} = useContext(AuthContext);
+
+  const [gameData, setGameData] = useState('hello');
+  const [playerRoom, setPlayerRoom] = useState(1);
+  const [enemyRoom, setenemyRoom] = useState(2);
+  const [playerHealth, setPlayerHealth] = useState(34);
   const [checkSave, setCheckSave] = useState(null);
 
 //send the current game details back to save the game progress
-  const saveGame = (event) =>{
-         
-    event.preventDefault()
-    fetch('REACT_APP_BACKEND_URL',{
+  const saveGame = () =>{
+      try {       
+        console.log('backend address', REACT_APP_BACKEND_URL)
+    fetch(REACT_APP_BACKEND_URL,{
         method: 'POST',
         body: JSON.stringify({
-            username: user.username,
-            playerLoc: gameData.playerRoom,
-            enemyLoc: gameData.enemyRoom,
-            playerHealth: gameData.playerHealth,
+            username: userData.nickname,
+            email: userData.email,
+            playerDet: { location:playerRoom, health:playerHealth},
+            enemyDet: {location:enemyRoom},
         }),
         headers: {
             'Content-Type': 'application/json'
         }      
     }).then(res =>res.json())
     .then(resJson =>{
-        //console.log('NewForm - resJson', resJson)
-        //console.log(event,"event")
-        //console.log("item ID", recipe_id)
+        console.log('username', userData.nickname)
+        console.log(playerRoom)
+        console.log(playerHealth)
+
     })
+  } catch (err) {
+    console.log("error logging out..", err);
+  }
   }
 
 
@@ -37,7 +47,7 @@ const RoomContextProvider = (props) => {
   const getSaveData = async () => {
     fetch(REACT_APP_BACKEND_URL)
     .then(res =>{return res.json()})
-    .then(json => setRoomData(json))
+    .then(json => setGameData(json))
     .then(console.log(gameData))
   };
 
@@ -62,9 +72,9 @@ useEffect(() => {
       method: 'PUT',
       body: JSON.stringify({
         username: user.username,
-        playerLoc: gameData.playerRoom,
-        enemyLoc: gameData.enemyRoom,
-        playerHealth: gameData.playerHealth,
+        playerLoc: playerRoom,
+        enemyLoc: enemyRoom,
+        playerHealth: playerHealth,
     }),
       headers:{
         'Content-Type': 'application/json'
@@ -78,7 +88,7 @@ useEffect(() => {
 
   const clearSave = async () => {
     try {
-      fetch(REACT_APP_BACKEND_URL, {
+      fetch(REACT_APP_BACKEND_URL + userData.email, {
         method: 'DELETE', 
     })
     } catch (err) {
@@ -92,13 +102,22 @@ useEffect(() => {
     updateSave,
     clearSave,
     gameData,
+    setGameData,
+    playerRoom, 
+    setPlayerRoom,
+    enemyRoom, 
+    setenemyRoom,
+    playerHealth, 
+    setPlayerHealth,
+    checkSave, 
+    setCheckSave
   };
 
     
 
   return (
-    <RoomContext.Provider value={value}>{props.children}</RoomContext.Provider>
+    <GameContext.Provider value={value}>{props.children}</GameContext.Provider>
   );
 };
 
-export { RoomContext, RoomContextProvider };
+export { GameContext, GameContextProvider };
