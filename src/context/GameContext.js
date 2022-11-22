@@ -17,9 +17,9 @@ const GameContextProvider = (props) => {
 
 //send the current game details back to save the game progress
   const saveGame = () =>{
-      try {       
+            
         console.log('backend address', REACT_APP_BACKEND_URL)
-    fetch(REACT_APP_BACKEND_URL,{
+        fetch(REACT_APP_BACKEND_URL,{
         method: 'POST',
         body: JSON.stringify({
             username: userData.nickname,
@@ -37,9 +37,8 @@ const GameContextProvider = (props) => {
         console.log(playerHealth)
 
     })
-  } catch (err) {
-    console.log("error logging out..", err);
-  }
+   .catch (err=>console.log("error logging out..", err));
+  
   }
 
 
