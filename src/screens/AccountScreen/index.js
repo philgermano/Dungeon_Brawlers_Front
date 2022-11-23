@@ -29,6 +29,8 @@ const AccountScreen = ({ navigation, theme }) => {
       <Button mode="contained" onPress={() => logout()}>
         Logout
       </Button>
+      <Button mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("MainMenu"))}>Back</Button>
+
     </View>
   );
 };
