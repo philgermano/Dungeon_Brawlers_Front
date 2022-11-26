@@ -9,15 +9,15 @@ import React from "react";
 import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
 import { StackActions, CommonActions, HeaderBackButton } from "@react-navigation/native";
 
-import {Button} from 'react-native-paper';
+import {Button, useTheme} from 'react-native-paper';
 
 function About({ navigation }) {
-
+  const theme = useTheme();
 
 
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       
       <Text>About</Text>
       <Button mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("MainMenu"))}>Back</Button>

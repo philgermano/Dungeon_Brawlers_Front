@@ -4,19 +4,24 @@
 
 
 import React from "react";
-import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
+import { View, Text, ActivityIndicator, StyleSheet, Image } from "react-native";
 import { StackActions } from "@react-navigation/native";
-import {Button} from 'react-native-paper';
+import {Button, useTheme} from 'react-native-paper';
+
+
+const splash = require('./titleScreen.png')
+const banner = require('./titleBanner.png')
 
 function Intro({ navigation }) {
-
+  const theme = useTheme();
 
 
 
   return (
-    <View style={styles.container}>
-       <Text>Intro</Text>
-       <Button mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Loading"))}>START</Button>
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+       <Image style={styles.banner} source={banner}/>
+       <Image style={styles.splashImage} source={splash}/>
+       <Button style={styles.startButton} mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Loading"))}>START</Button>
 
     </View>
   );
@@ -28,6 +33,20 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  splashImage:{
+    height: '60%',
+    resizeMethod: 'scale',
+    resizeMode: 'contain',
+
+  },
+  startButton:{
+    marginTop: 10,
+  },
+  banner:{
+    width: '100%',
+    resizeMethod: 'scale',
+    resizeMode: 'contain',
+  }
 });
 
 export default Intro;

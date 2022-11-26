@@ -10,14 +10,15 @@
 import React from "react";
 import { View, Text, ActivityIndicator, StyleSheet} from "react-native";
 import { StackActions } from "@react-navigation/native";
-import {Button} from 'react-native-paper'
-function GameSelect({ navigation }) {
+import {Button, useTheme} from 'react-native-paper'
 
+function GameSelect({ navigation }) {
+  const theme = useTheme();
 
 
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       
       <Text>Game SElect</Text>
       <Button mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Game"))}>New Game</Button>

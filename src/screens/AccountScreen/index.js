@@ -1,13 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { Avatar, Button, withTheme } from "react-native-paper";
+import { Avatar, Button, useTheme } from "react-native-paper";
 import { StackActions } from "@react-navigation/native";
 
 import { AuthContext } from "../../context/AuthContext";
 
-const AccountScreen = ({ navigation, theme }) => {
+const AccountScreen = ({ navigation }) => {
   const { logout, loggedIn, userData } = useContext(AuthContext);
-  const { colors } = theme;
+  const theme = useTheme();
 
   useEffect(() => {
     if (loggedIn === false) {
@@ -16,7 +16,7 @@ const AccountScreen = ({ navigation, theme }) => {
   }, [loggedIn]);
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       {userData && (
         <View style={styles.userContainer}>
           <Avatar.Image size={100} source={{ uri: userData.picture }} />
@@ -53,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withTheme(AccountScreen);
+export default AccountScreen;

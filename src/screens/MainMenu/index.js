@@ -8,15 +8,16 @@
 import React from "react";
 import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
 import { StackActions } from "@react-navigation/native";
-import {Button} from 'react-native-paper';
+import {Button, useTheme} from 'react-native-paper';
+
 
 function MainMenu({ navigation }) {
-
+  const theme = useTheme();
 
 
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       
       <Text>MAinMEnu</Text>
       <Button style={styles.button} mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("GameSelect"))}>Game</Button>

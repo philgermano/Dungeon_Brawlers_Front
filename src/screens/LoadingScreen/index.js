@@ -2,11 +2,12 @@
 import React, { useEffect, useContext } from "react";
 import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
 import { StackActions } from "@react-navigation/native";
-
+import {useTheme} from 'react-native-paper';
 import { AuthContext } from "../../context/AuthContext";
 
 function LoadingScreen({ navigation }) {
   const { loading, loggedIn } = useContext(AuthContext);
+  const theme = useTheme();
 
   useEffect(() => {
     if (loggedIn) {
@@ -17,7 +18,7 @@ function LoadingScreen({ navigation }) {
   }, [loggedIn]);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       {loading && (
         <React.Fragment>
           <ActivityIndicator size="large" />

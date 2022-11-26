@@ -6,19 +6,21 @@
 
 
 import React from "react";
-import { View, Text, ActivityIndicator, StyleSheet, ScrollView } from "react-native";
+import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
 import { StackActions } from "@react-navigation/native";
-import {Button} from 'react-native-paper'
+import {Button, useTheme} from 'react-native-paper';
+import {Icon} from 'react-native-vector-icons';
+
+
 function Game({ navigation }) {
-
-
-
+  const theme = useTheme();
+  const forNow = require('./images/hallway3.png');
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
     <View style={styles.gameImage}>
-      <Text>Image</Text>
-      </View>
+            <Image style={styles.image} source={forNow}/>
+            </View>
       <View style={styles.gameText}>
     <ScrollView>
       <Text>TEXT</Text>
@@ -27,13 +29,13 @@ function Game({ navigation }) {
       </View>
     <View style={styles.controlPanel}>
       <View style={styles.buttonRow}>
-      <Button  mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>#1 </Button><Button  mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>#2 </Button><Button   mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>#3 </Button>
+      <Button mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>↰ </Button><Button  mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>↑ </Button><Button   mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>↱ </Button>
       </View>
       <View style={styles.buttonRow}>
-      <Button  mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>#4 </Button><Button  mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>#5 </Button><Button   mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>#6 </Button>
+      <Button  mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>← </Button><Button  mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>↓ </Button><Button   mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>→ </Button>
       </View>
       <View style={styles.buttonRow}>
-      <Button  mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>#7 </Button><Button  mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>#8 </Button><Button   mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>#9 </Button>
+      <Button  mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>⚔ </Button><Button  mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>↨ </Button><Button   mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>⁀➴</Button>
       </View>
       </View>
       <View style={styles.bottomBar}>
@@ -46,14 +48,19 @@ function Game({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-     
   },
   gameImage: {
     flex:3,
-    backgroundColor: 'blue',
+    //backgroundColor: 'blue',
     borderColor: 'black',
     borderWidth: 5,
     padding: 3,
+  },
+  image:{
+    width: '100%',
+    height: '100%',
+    resizeMethod: 'scale',
+    //resizeMode: 'contain',
   },
   gameText:{
     flex: 2,
@@ -93,6 +100,7 @@ const styles = StyleSheet.create({
     borderRadius: 0,
     borderWidth: 1,
     borderColor: 'blacks',
+    fontSize: ''
   }
   
 });
