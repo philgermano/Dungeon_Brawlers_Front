@@ -21,7 +21,9 @@ function Intro({ navigation }) {
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
        <Image style={styles.banner} source={banner}/>
        <Image style={styles.splashImage} source={splash}/>
-       <Button style={styles.startButton} mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Loading"))}>START</Button>
+       <Button style={styles.button} mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Loading"))}>START</Button>
+       <Button style={styles.button} mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("About"))}>About</Button>
+       <Button style={styles.button} mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Account"))}>Profile</Button>
 
     </View>
   );
@@ -39,8 +41,8 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
 
   },
-  startButton:{
-    marginTop: 10,
+  button:{
+    marginTop:5
   },
   banner:{
     width: '100%',

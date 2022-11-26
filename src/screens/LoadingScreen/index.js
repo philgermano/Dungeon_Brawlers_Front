@@ -11,7 +11,7 @@ function LoadingScreen({ navigation }) {
 
   useEffect(() => {
     if (loggedIn) {
-      navigation.dispatch(StackActions.replace("MainMenu"));
+      navigation.dispatch(StackActions.replace("GameSelect"));
     } else if (loggedIn === false) {
       navigation.dispatch(StackActions.replace("Login"));
     }

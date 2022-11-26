@@ -29,7 +29,7 @@ const AccountScreen = ({ navigation }) => {
       <Button mode="contained" onPress={() => logout()}>
         Logout
       </Button>
-      <Button mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("MainMenu"))}>Back</Button>
+      <Button mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Intro"))}>Back</Button>
 
     </View>
   );

@@ -21,11 +21,11 @@ function GameSelect({ navigation }) {
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       
       <Text>Game SElect</Text>
-      <Button mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Game"))}>New Game</Button>
-      <Button mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Game"))}>Load </Button>
+      <Button style={styles.button} mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Game"))}>New Game</Button>
+      <Button style={styles.button} mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Game"))}>Load </Button>
 
       
-      <Button mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("MainMenu"))}>Back</Button>
+      <Button style={styles.button} mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Intro"))}>Back</Button>
 
     </View>
   );
@@ -37,6 +37,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  button:{
+    marginTop:5
+  }
 });
 
 export default GameSelect;
