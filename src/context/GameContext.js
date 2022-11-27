@@ -11,10 +11,10 @@ const GameContextProvider = (props) => {
   const { logout, loggedIn, userData} = useContext(AuthContext);
   const [gameData, setGameData] = useState('hello');
   const [playerRoom, setPlayerRoom] = useState(1);
-  const [enemyRoom, setenemyRoom] = useState(3);
+  const [enemyRoom, setEnemyRoom] = useState(3);
   const [playerHealth, setPlayerHealth] = useState(10);
   const [checkSave, setCheckSave] = useState(null);
- 
+  const [enemyHealth, setEnemyHealth] = useState(10)
 
 
 //send the current game details back to save the game progress
@@ -107,9 +107,11 @@ const GameContextProvider = (props) => {
     playerRoom, 
     setPlayerRoom,
     enemyRoom, 
-    setenemyRoom,
+    setEnemyRoom,
     playerHealth, 
     setPlayerHealth,
+    enemyHealth,
+    setEnemyHealth,
     checkSave, 
     setCheckSave
   };
