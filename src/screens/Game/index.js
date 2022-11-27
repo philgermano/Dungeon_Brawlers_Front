@@ -9,7 +9,7 @@
 //combine select and intro screen
 //banner still on top
 
-import React, {useState, useContext, useEffect, useCallback} from "react";
+import React, {useState, useContext, useEffect, useRef} from "react";
 import { View, Text, Image, StyleSheet, ScrollView, Modal, FlatList } from "react-native";
 import { StackActions } from "@react-navigation/native";
 import {Button, useTheme, ProgressBar} from 'react-native-paper';
@@ -19,6 +19,8 @@ function Game({ navigation }) {
   const roomList = require('../../resources/roomList.js')
   const theme = useTheme();
   const { playerRoom, setPlayerRoom, enemyRoom, setEnemyRoom, playerHealth, setPlayerHealth, enemyHealth, setEnemyHealth} = useContext(GameContext);
+
+  const flatListRef = useRef();
 
   const [modalVisible, setModalVisible] = useState(false);
   const [hpBar, setHpBar] = useState(1);
@@ -168,6 +170,9 @@ const addOntoLog = (message) => {
                           </>}
                         data={messageLog}
                         renderItem={({item})=><Text>{item}</Text>}
+                        keyExtractor={(item) => item.id}
+                        ref={flatListRef}
+            onContentSizeChange={()=> flatListRef.current.scrollToEnd()}
                         />
                         </View>
 {/* CONTROL PAD                         */}
