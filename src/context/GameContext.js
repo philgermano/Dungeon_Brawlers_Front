@@ -12,7 +12,7 @@ const GameContextProvider = (props) => {
   const [gameData, setGameData] = useState('hello');
   const [playerRoom, setPlayerRoom] = useState(1);
   const [enemyRoom, setenemyRoom] = useState(3);
-  const [playerHealth, setPlayerHealth] = useState(34);
+  const [playerHealth, setPlayerHealth] = useState(10);
   const [checkSave, setCheckSave] = useState(null);
  
 

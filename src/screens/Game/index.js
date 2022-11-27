@@ -12,7 +12,7 @@
 import React, {useState, useContext, useEffect, useCallback} from "react";
 import { View, Text, Image, StyleSheet, ScrollView, Modal } from "react-native";
 import { StackActions } from "@react-navigation/native";
-import {Button, useTheme} from 'react-native-paper';
+import {Button, useTheme, ProgressBar} from 'react-native-paper';
 import { GameContext } from "../../context/GameContext";
 
 function Game({ navigation }) {
@@ -21,7 +21,7 @@ function Game({ navigation }) {
   const { playerRoom, setPlayerRoom, enemyRoom, setenemyRoom, playerHealth, setPlayerHealth} = useContext(GameContext);
 
   const [modalVisible, setModalVisible] = useState(false);
-  
+  const [hpBar, setHpBar] = useState(1);
   const room1 = require(`./images/turn1.png`);
   const room2 = require(`./images/hallway1.png`);
   const room3 = require(`./images/turn2.png`);
@@ -113,6 +113,10 @@ function Game({ navigation }) {
 
   }
 
+  const hpCalc =() =>{
+    let hpPercent = playerHealth/10;
+    setHpBar(hpPercent)
+  }
 const upArrow = ()=>{
 setPlayerRoom(roomList.default[playerRoom].north);
 }
@@ -128,20 +132,24 @@ const LeftArrow = ()=>{
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-    <View style={styles.gameImage}>
-            <Image style={styles.image} source={roomImage}/>
-            </View>
+          <View style={styles.gameImage}>
+                  <Image style={styles.image} source={roomImage}/>
+                  </View>
       <View style={[styles.gameText, { backgroundColor: theme.colors.background }]}>
+                  <View>
+                  <ProgressBar style={styles.bar} progress={hpBar} color={'#880808'} />
+                  <Text style={styles.barText}>Health</Text>
+                  </View>
     <ScrollView>
-      <Text>{roomList.default[playerRoom].description}</Text>
-      </ScrollView>  
-      </View>
+          <Text>{roomList.default[playerRoom].description}</Text>
+          </ScrollView>  
+          </View>
     <View style={[styles.controlPanel, { backgroundColor: theme.colors.background }]}>
-      <View style={styles.buttonRow}>
-          <Button  mode="contained"  onPress={()=>console.log('pressed')} style={styles.button}>👁️‍🗨️ </Button>
-              <Button disabled={roomList.default[playerRoom].north ? false:true}  mode="contained" onPress={()=>upArrow()} style={styles.button}>▲ </Button>
-                <Button   mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>☣️ </Button>
-      </View>
+            <View style={styles.buttonRow}>
+                <Button  mode="contained"  onPress={()=>console.log('pressed')} style={styles.button}>👁️‍🗨️ </Button>
+                    <Button disabled={roomList.default[playerRoom].north ? false:true}  mode="contained" onPress={()=>upArrow()} style={styles.button}>▲ </Button>
+                      <Button   mode="contained" onPress={()=>hpCalc()} style={styles.button}>☣️ </Button>
+            </View>
       <View style={styles.buttonRow}>
            <Button  disabled={roomList.default[playerRoom].west ? false:true} mode="contained" onPress={()=>LeftArrow()} style={styles.button}>◀</Button>
                   <Button  mode="contained" onPress={()=>imageSelector(playerRoom)} style={styles.button}>☣️ </Button>
@@ -272,7 +280,17 @@ const styles = StyleSheet.create({
     flexBasis: 'auto',
     height: '100%',
   },
+  bar:{
+    height: 20,
+    width:'80%',
+    alignSelf: 'center',
+    marginTop: 1,
+  },
+  barText:{
+    position: 'absolute',
+    alignSelf: 'center',
 
+  }
   
 });
 
