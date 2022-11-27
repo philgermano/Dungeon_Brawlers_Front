@@ -20,7 +20,7 @@ function About({ navigation }) {
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       
       <Text>About</Text>
-      <Button mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Intro"))}>Back</Button>
+      <Button  color='#F5DF68' mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Intro"))}>Back</Button>
 
     </View>
   );

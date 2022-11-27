@@ -9,22 +9,66 @@
 //combine select and intro screen
 //banner still on top
 
-import React, {useState} from "react";
+import React, {useState, useContext, useEffect, useCallback} from "react";
 import { View, Text, Image, StyleSheet, ScrollView, Modal } from "react-native";
 import { StackActions } from "@react-navigation/native";
 import {Button, useTheme} from 'react-native-paper';
-import {Icon} from 'react-native-vector-icons';
-
+import { GameContext } from "../../context/GameContext";
 
 function Game({ navigation }) {
-  const [modalVisible, setModalVisible] = useState(false);
+  const roomList = require('../../resources/roomList.js')
   const theme = useTheme();
-  const forNow = require('./images/hallway3.png');
+  const { playerRoom, setPlayerRoom, enemyRoom, setenemyRoom, playerHealth, setPlayerHealth} = useContext(GameContext);
+
+  const [modalVisible, setModalVisible] = useState(false);
+  
+  
+  const room1 = require(`./images/hallway1.png`);
+  const room2 = require(`./images/hallway2.png`);
+  const room3 = require(`./images/hallway3.png`);
+
+  const [roomImage, setRoomImage]= useState(room1);
+
+  //sets initial player room image on load
+  useEffect(() => {
+    imageSelector(playerRoom);
+  }, [playerRoom]);
+
+
+  const imageSelector = () =>{
+      switch(playerRoom){
+        case 1:
+          setRoomImage(room1);
+          break;
+
+          case 2:
+            setRoomImage(room2);
+            break;
+            
+            case 3:
+              setRoomImage(room3);
+              break;    
+      }
+
+  }
+
+const upArrow = ()=>{
+setPlayerRoom(roomList.default[playerRoom].north);
+}
+const downArrow =(room)=>{
+setPlayerRoom(roomList.default[playerRoom].south)
+}
+const LeftArrow = ()=>{
+  setPlayerRoom(roomList.default[playerRoom].west);
+  }
+  const RightArrow =(room)=>{
+  setPlayerRoom(roomList.default[playerRoom].east)
+  }
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
     <View style={styles.gameImage}>
-            <Image style={styles.image} source={forNow}/>
+            <Image style={styles.image} source={roomImage}/>
             </View>
       <View style={[styles.gameText, { backgroundColor: theme.colors.background }]}>
     <ScrollView>
@@ -34,13 +78,19 @@ function Game({ navigation }) {
       </View>
     <View style={[styles.controlPanel, { backgroundColor: theme.colors.background }]}>
       <View style={styles.buttonRow}>
-          <Button mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>↰ </Button><Button  mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>↑ </Button><Button   mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>↱ </Button>
+          <Button mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>↰ </Button>
+              <Button  mode="contained" onPress={()=>upArrow()} style={styles.button}>↑ </Button>
+                <Button   mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>↱ </Button>
       </View>
       <View style={styles.buttonRow}>
-           <Button  mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>← </Button><Button  mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>↓ </Button><Button   mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>→ </Button>
+           <Button  mode="contained" onPress={()=>LeftArrow()} style={styles.button}>← </Button>
+                <Button  mode="contained" onPress={()=>downArrow()} style={styles.button}>↓ </Button>
+                      <Button   mode="contained" onPress={()=>rightArrow()} style={styles.button}>→ </Button>
       </View>
       <View style={styles.buttonRow}>
-            <Button  mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>⚔ </Button><Button  mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>↨ </Button><Button   mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>⁀➴</Button>
+            <Button  mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>⚔ </Button>
+                    <Button  mode="contained" onPress={()=>imageSelector(playerRoom)} style={styles.button}>↨ </Button>
+                          <Button   mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>⁀➴</Button>
       </View>
       </View>
       <View style={[styles.bottomBar, { backgroundColor: theme.colors.background }]}>
@@ -63,7 +113,11 @@ function Game({ navigation }) {
             <Button style={styles.helpButton} mode="text" color='white' onPress={() => setModalVisible(true)}>Help</Button>
           </View>
           <Button Button style={styles.helpButton} mode="text" color='white' onPress={()=>navigation.dispatch(StackActions.replace("Intro"))}>Main Menu</Button>   
-               <Button Button style={styles.helpButton} mode="text" color='white' onPress={()=>console.log('pressed')}>Save</Button>  
+               <Button Button style={styles.helpButton} mode="text" color='white' onPress={()=>{
+                console.log(roomList);
+                imageSelector(2);
+                console.log(roomList.default[1]);
+                }}>Save</Button>  
       </View>
     </View>
   );
