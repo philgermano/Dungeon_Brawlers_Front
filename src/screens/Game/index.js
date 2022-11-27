@@ -22,12 +22,21 @@ function Game({ navigation }) {
 
   const [modalVisible, setModalVisible] = useState(false);
   
-  
-  const room1 = require(`./images/hallway1.png`);
-  const room2 = require(`./images/intersection.png`);
-  const room3 = require(`./images/hallway2.png`);
-  const room4 = require(`./images/hallway3.png`);
-  const room5 = require(`./images/hallway3.png`);
+  const room1 = require(`./images/turn1.png`);
+  const room2 = require(`./images/hallway1.png`);
+  const room3 = require(`./images/turn2.png`);
+  const room4 = require(`./images/hallway2.png`);
+  const room5 = require(`./images/intersection.png`);
+  const room6 = require(`./images/hallway3.png`);
+  const room7 = require(`./images/turn3.png`);
+  const room8 = require(`./images/hallway4.png`);
+  const room9 = require(`./images/turn4.png`);
+  const room10 = require(`./images/hallway5.png`);
+  const room11 = require(`./images/turn5.png`);
+  const room12 = require(`./images/hallway6.png`);
+  const room13 = require(`./images/hallway7.png`);
+  const room14 = require(`./images/turn6.png`);
+  const room15 = require(`./images/hallway8.png`);
 
   const [roomImage, setRoomImage]= useState(room1);
 
@@ -58,7 +67,44 @@ function Game({ navigation }) {
                 case 5:
                   setRoomImage(room5);
                   break;
+
+                  case 6:
+                    setRoomImage(room6);
+                    break;    
+      
+                    case 7:
+                      setRoomImage(room7);
+                      break;
+      
+                      case 8:
+                        setRoomImage(room8);
+                        break;
+
+                        case 9:
+                          setRoomImage(room9);
+                          break;    
+            
+                          case 10:
+                            setRoomImage(room10);
+                            break;
+            
+                            case 11:
+                              setRoomImage(room11);
+                              break;
+                              case 12:
+                                setRoomImage(room12);
+                                break;    
                   
+                                case 13:
+                                  setRoomImage(room13);
+                                  break;
+                  
+                                  case 14:
+                                    setRoomImage(room14);
+                                    break;
+                                    case 15:
+                                      setRoomImage(room15);
+                                      break;
                   case 0:
                     setRoomImage(room3);
                     break;   
@@ -87,24 +133,23 @@ const LeftArrow = ()=>{
             </View>
       <View style={[styles.gameText, { backgroundColor: theme.colors.background }]}>
     <ScrollView>
-      <Text>TEXT</Text>
-      <Text>TEXT</Text><Text>TEXT</Text><Text>TEXT</Text><Text>TEXT</Text><Text>TEXT</Text><Text>TEXT</Text><Text>TEXT</Text><Text>TEXT</Text><Text>TEXT</Text><Text>TEXT</Text><Text>TEXT</Text><Text>TEXT</Text>
+      <Text>{roomList.default[playerRoom].description}</Text>
       </ScrollView>  
       </View>
     <View style={[styles.controlPanel, { backgroundColor: theme.colors.background }]}>
       <View style={styles.buttonRow}>
-          <Button mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>↰ </Button>
-              <Button  mode="contained" onPress={()=>upArrow()} style={styles.button}>↑ </Button>
-                <Button   mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>↱ </Button>
+          <Button  mode="contained"  onPress={()=>console.log('pressed')} style={styles.button}>👁️‍🗨️ </Button>
+              <Button disabled={roomList.default[playerRoom].north ? false:true}  mode="contained" onPress={()=>upArrow()} style={styles.button}>▲ </Button>
+                <Button   mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>☣️ </Button>
       </View>
       <View style={styles.buttonRow}>
-           <Button  mode="contained" onPress={()=>LeftArrow()} style={styles.button}>← </Button>
-                <Button  mode="contained" onPress={()=>downArrow()} style={styles.button}>↓ </Button>
-                      <Button   mode="contained" onPress={()=>rightArrow()} style={styles.button}>→ </Button>
+           <Button  disabled={roomList.default[playerRoom].west ? false:true} mode="contained" onPress={()=>LeftArrow()} style={styles.button}>◀</Button>
+                  <Button  mode="contained" onPress={()=>imageSelector(playerRoom)} style={styles.button}>☣️ </Button>
+                           <Button  disabled={roomList.default[playerRoom].east ? false:true} mode="contained" onPress={()=>rightArrow()} style={styles.button}>▶</Button>
       </View>
       <View style={styles.buttonRow}>
             <Button  mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>⚔ </Button>
-                    <Button  mode="contained" onPress={()=>imageSelector(playerRoom)} style={styles.button}>↨ </Button>
+                    <Button  mode="contained" disabled={roomList.default[playerRoom].south ? false:true} onPress={()=>downArrow()} style={styles.button}>▼</Button>
                           <Button   mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>⁀➴</Button>
       </View>
       </View>
