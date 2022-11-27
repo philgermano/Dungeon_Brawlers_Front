@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { Button, withTheme } from "react-native-paper";
+import { Button, useTheme } from "react-native-paper";
 import { StackActions } from "@react-navigation/native";
 
 import { AuthContext } from "../../context/AuthContext";
 
-const LoginScreen = ({ navigation, theme }) => {
-  const { colors } = theme;
+const LoginScreen = ({ navigation }) => {
+  const theme = useTheme();
 
   const { loggedIn } = useContext(AuthContext);
 
@@ -19,7 +19,7 @@ const LoginScreen = ({ navigation, theme }) => {
   const { login } = useContext(AuthContext);
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <Button mode="contained" onPress={() => login()}>
         Login with Auth0
       </Button>
@@ -38,4 +38,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withTheme(LoginScreen);
+export default LoginScreen;

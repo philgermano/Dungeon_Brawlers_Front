@@ -23,9 +23,7 @@ import LoadingScreen from './src/screens/LoadingScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import AccountScreen from './src/screens/AccountScreen';
 import CrudTest from './src/screens/CrudTest';
-import MainMenu from './src/screens/MainMenu';
 import About from './src/screens/About';
-import GameSelect from './src/screens/GameSelect';
 import Game from './src/screens/Game';
 
 import {AuthContextProvider} from './src/context/AuthContext';
@@ -45,9 +43,7 @@ const App = () => {
           <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="Intro" component={Intro} />
           <Stack.Screen name="About" component={About} />
-          <Stack.Screen name="GameSelect" component={GameSelect} />
           <Stack.Screen name="Game" component={Game} />
-          <Stack.Screen name="MainMenu" component={MainMenu} />
             <Stack.Screen name="Loading" component={LoadingScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Account" component={AccountScreen} />

@@ -3,17 +3,19 @@ import {  REACT_APP_BACKEND_URL } from '@env';
 
 import { AuthContext } from "./AuthContext";
 
+
 const GameContext = React.createContext();
 
 const GameContextProvider = (props) => {
 
   const { logout, loggedIn, userData} = useContext(AuthContext);
-
   const [gameData, setGameData] = useState('hello');
   const [playerRoom, setPlayerRoom] = useState(1);
-  const [enemyRoom, setenemyRoom] = useState(2);
-  const [playerHealth, setPlayerHealth] = useState(34);
+  const [enemyRoom, setenemyRoom] = useState(3);
+  const [playerHealth, setPlayerHealth] = useState(10);
   const [checkSave, setCheckSave] = useState(null);
+ 
+
 
 //send the current game details back to save the game progress
   const saveGame = () =>{

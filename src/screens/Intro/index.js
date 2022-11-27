@@ -4,20 +4,32 @@
 
 
 import React from "react";
-import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image, Pressable } from "react-native";
 import { StackActions } from "@react-navigation/native";
-import {Button} from 'react-native-paper';
+import {Button, useTheme} from 'react-native-paper';
+
+
+const splash = require('./titleScreen3.png')
+const banner = require('./titleBanner.png')
 
 function Intro({ navigation }) {
-
+  const theme = useTheme();
 
 
 
   return (
-    <View style={styles.container}>
-       <Text>Intro</Text>
-       <Button mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Loading"))}>START</Button>
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+       <Image style={styles.splashImage} source={splash}/>
+       <Image style={styles.banner} source={banner}/>
+       <View style={styles.buttonSet}>
+       {/* <TouchableOpacity style={[styles.buttonPress, { backgroundColor: '#ee2244' }]}onPress={console.log('pressed')} activeOpacity={0.6}><Image style={styles.buttonImage} source={require('./startButton.png')}/></TouchableOpacity> */}
 
+       {/* Cut the color if it doesn't look good. ask */}
+       <Button style={styles.button} color='#F5DF68' mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Game"))}>New Game</Button>
+       <Button style={styles.button} color='#F5DF68' mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Game"))}>Load </Button>
+       <Button  style={styles.button} color='#F5DF68' mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("About"))}>About</Button>
+       <Button style={styles.button} color='#F5DF68' mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Account"))}>Profile</Button>
+       </View>
     </View>
   );
 }
@@ -28,6 +40,37 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  splashImage:{
+    height: '100%',
+    right: '-60%',
+    resizeMethod: 'scale',
+    resizeMode: 'contain',
+    position: 'absolute'
+
+  },
+  buttonPress:{
+
+    height: '10%',
+    marginBottom:100,
+  },
+  button:{
+    marginTop:15,
+  },
+  buttonImage:{
+    width: 'auto',
+    resizeMethod: 'scale',
+    resizeMode: 'contain',
+  },
+  banner:{
+    width: '100%',
+    resizeMethod: 'scale',
+    resizeMode: 'contain',
+    marginTop: '30%'
+  },
+  buttonSet:{
+    marginTop: '70%',
+    width: '50%',
+  }
 });
 
 export default Intro;
