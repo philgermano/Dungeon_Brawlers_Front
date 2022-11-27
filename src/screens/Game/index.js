@@ -24,8 +24,10 @@ function Game({ navigation }) {
   
   
   const room1 = require(`./images/hallway1.png`);
-  const room2 = require(`./images/hallway2.png`);
-  const room3 = require(`./images/hallway3.png`);
+  const room2 = require(`./images/intersection.png`);
+  const room3 = require(`./images/hallway2.png`);
+  const room4 = require(`./images/hallway3.png`);
+  const room5 = require(`./images/hallway3.png`);
 
   const [roomImage, setRoomImage]= useState(room1);
 
@@ -48,6 +50,19 @@ function Game({ navigation }) {
             case 3:
               setRoomImage(room3);
               break;    
+
+              case 4:
+                setRoomImage(room4);
+                break;
+
+                case 5:
+                  setRoomImage(room5);
+                  break;
+                  
+                  case 0:
+                    setRoomImage(room3);
+                    break;   
+
       }
 
   }
@@ -61,7 +76,7 @@ setPlayerRoom(roomList.default[playerRoom].south)
 const LeftArrow = ()=>{
   setPlayerRoom(roomList.default[playerRoom].west);
   }
-  const RightArrow =(room)=>{
+  const rightArrow =(room)=>{
   setPlayerRoom(roomList.default[playerRoom].east)
   }
 
