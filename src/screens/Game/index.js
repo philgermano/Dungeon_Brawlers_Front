@@ -4,6 +4,10 @@
 //Intro splash screen. just start button, a splash image, and the title.
 //clicking start will push to loading screen.
 
+// larger splash image
+//butons low
+//combine select and intro screen
+//banner still on top
 
 import React, {useState} from "react";
 import { View, Text, Image, StyleSheet, ScrollView, Modal } from "react-native";
@@ -58,7 +62,7 @@ function Game({ navigation }) {
             </Modal>
             <Button style={styles.helpButton} mode="text" color='white' onPress={() => setModalVisible(true)}>Help</Button>
           </View>
-          <Button Button style={styles.helpButton} mode="text" color='white' onPress={()=>navigation.dispatch(StackActions.replace("Game"))}>Main Menu</Button>   
+          <Button Button style={styles.helpButton} mode="text" color='white' onPress={()=>navigation.dispatch(StackActions.replace("Intro"))}>Main Menu</Button>   
                <Button Button style={styles.helpButton} mode="text" color='white' onPress={()=>console.log('pressed')}>Save</Button>  
       </View>
     </View>
@@ -83,7 +87,7 @@ const styles = StyleSheet.create({
     //resizeMode: 'contain',
   },
   gameText:{
-    flex: 2,
+    flex: 1.5,
     backgroundColor: 'red',
     borderColor: 'black',
     borderLeftWidth: 5,
@@ -121,7 +125,7 @@ const styles = StyleSheet.create({
     flexShrink:1,
     borderRadius: 0,
     borderWidth: 0,
-    borderColor: 'blacks',
+    borderColor: 'black',
     fontSize: ''
   },
   modalView: {
