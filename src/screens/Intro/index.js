@@ -15,7 +15,7 @@ const banner = require('./titleBanner.png')
 
 function Intro({ navigation }) {
   const theme = useTheme();
-  const {setCheckSave, checkSave} = useContext(GameContext);
+  const {setCheckSave, checkSave, setLoadDefault, getSaveData, loadDefaultStats} = useContext(GameContext);
 
 
   return (
@@ -26,10 +26,14 @@ function Intro({ navigation }) {
        {/* <TouchableOpacity style={[styles.buttonPress, { backgroundColor: '#ee2244' }]}onPress={console.log('pressed')} activeOpacity={0.6}><Image style={styles.buttonImage} source={require('./startButton.png')}/></TouchableOpacity> */}
 
        {/* Cut the color if it doesn't look good. ask */}
-       <Button style={styles.button} color='#F5DF68' mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Game"))}>New Game</Button>
        <Button style={styles.button} color='#F5DF68' mode="contained" onPress={()=>{
-        setCheckSave(true);
+        loadDefaultStats();
         navigation.dispatch(StackActions.replace("Game"));
+       }}>New Game</Button>
+       <Button style={styles.button} color='#F5DF68' mode="contained" onPress={()=>{
+        getSaveData();
+        setCheckSave(true);
+        setTimeout(()=>navigation.dispatch(StackActions.replace("Game")),300);
         }}>Load </Button>
        <Button  style={styles.button} color='#F5DF68' mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("About"))}>About</Button>
        <Button style={styles.button} color='#F5DF68' mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Account"))}>Profile</Button>

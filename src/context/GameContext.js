@@ -15,7 +15,7 @@ const GameContextProvider = (props) => {
   const [playerHealth, setPlayerHealth] = useState(5);
   const [checkSave, setCheckSave] = useState(false);
   const [enemyHealth, setEnemyHealth] = useState(5)
-
+  const [loadDefault, setLoadDefault] = useState(false);
 
 //send the current game details back to save the game progress
   const saveGame = () =>{
@@ -48,16 +48,16 @@ const GameContextProvider = (props) => {
 
   //get data for user instance of a game
   const getSaveData = async () => {
-    fetch(`${REACT_APP_BACKEND_URL}/${userData.email}`)
+    await fetch(`${REACT_APP_BACKEND_URL}/${userData.email}`)
     .then(res =>{return res.json()})
     .then(json => setGameData(json))
-    .then(()=>{
+    .then((data)=>{
       // console.log(gameData, "gamedata");
       // console.log(gameData.game, 'gamedata.game');
-      console.log(gameData.game.playerRoom, 'gamedata.game.playerRoom');
-      console.log(gameData.game.playerHealth, 'gamedata.game.playerHealth');
-      console.log(gameData.game.enemyHealth, 'gamedata.game.enemyHealth');
-      console.log(gameData.game.enemyRoom, 'gamedata.game.enemyRoom');
+      // setPlayerHealth(gameData.game.playerHealth);
+      // setPlayerRoom(gameData.game.playerRoom);
+      // setEnemyHealth(gameData.game.enemyHealth);
+      // setEnemyRoom(gameData.game.enemyRoom);
     })
   };
 
@@ -76,9 +76,16 @@ const GameContextProvider = (props) => {
 // }, [checkSave]);
 
 
+const loadDefaultStats=()=>{
+  setPlayerHealth(5);
+  setPlayerRoom(1);
+  setEnemyHealth(5);
+  setEnemyRoom(3);
+}
+
 //update the current saved data of the users game
   const updateSave = async () => {
-    fetch(`${REACT_APP_BACKEND_URL}/${userData.email}`, {
+    await fetch(`${REACT_APP_BACKEND_URL}/${userData.email}`, {
       method: 'PUT',
       body: JSON.stringify({
         username: userData.nickname,
@@ -124,7 +131,10 @@ const GameContextProvider = (props) => {
     enemyHealth,
     setEnemyHealth,
     checkSave, 
-    setCheckSave
+    setCheckSave,
+    setLoadDefault,
+    loadDefault,
+    loadDefaultStats
   };
 
     

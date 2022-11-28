@@ -18,7 +18,7 @@ import { GameContext } from "../../context/GameContext";
 function Game({ navigation }) {
   const roomList = require('../../resources/roomList.js')
   const theme = useTheme();
-  const { playerRoom, setPlayerRoom, enemyRoom, setEnemyRoom, playerHealth, setPlayerHealth, enemyHealth, setEnemyHealth, gameData, saveGame, getSaveData, setCheckSave, checkSave, updateSave} = useContext(GameContext);
+  const { playerRoom, setPlayerRoom, enemyRoom, setEnemyRoom, playerHealth, setPlayerHealth, enemyHealth, setEnemyHealth, getSaveData,  updateSave, checkSave, setCheckSave, gameData } = useContext(GameContext);
 
   const flatListRef = useRef();
 
@@ -49,10 +49,15 @@ function Game({ navigation }) {
 
   //sets initial player room image on load
   useEffect(() => {
-    if(checkSave === true){
-        getSaveData();
-        setCheckSave(false); 
+    if(checkSave ===true){
+      setPlayerHealth(gameData.game.playerHealth);
+      setPlayerRoom(gameData.game.playerRoom);
+      setEnemyHealth(gameData.game.enemyHealth);
+      setEnemyRoom(gameData.game.enemyRoom);
+      setCheckSave(false);
     }
+
+
     imageSelector(playerRoom);
   }, [playerRoom]);
 
@@ -241,7 +246,7 @@ const addOntoLog = (message) => {
           </View>
           <Button Button style={styles.helpButton} mode="text" color='white' onPress={()=>navigation.dispatch(StackActions.replace("Intro"))}>Main Menu</Button>   
                <Button Button style={styles.helpButton} mode="text" color='white' onPress={()=>{
-                updateSave();
+                updateSave().then(getSaveData())
                 }}>Save</Button>  
       </View>
     </View>
