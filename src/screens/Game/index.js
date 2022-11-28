@@ -18,7 +18,7 @@ import { GameContext } from "../../context/GameContext";
 function Game({ navigation }) {
   const roomList = require('../../resources/roomList.js')
   const theme = useTheme();
-  const { playerRoom, setPlayerRoom, enemyRoom, setEnemyRoom, playerHealth, setPlayerHealth, enemyHealth, setEnemyHealth} = useContext(GameContext);
+  const { playerRoom, setPlayerRoom, enemyRoom, setEnemyRoom, playerHealth, setPlayerHealth, enemyHealth, setEnemyHealth, gameData, saveGame, getSaveData, setCheckSave, checkSave, updateSave} = useContext(GameContext);
 
   const flatListRef = useRef();
 
@@ -26,7 +26,7 @@ function Game({ navigation }) {
   const [hpBar, setHpBar] = useState(1);
   const [roomImage, setRoomImage]= useState(room1);
   const [messageLog, setMessageLog] = useState([])
-
+  
   const room1 = require(`./images/turn1.png`);
   const room2 = require(`./images/hallway1.png`);
   const room3 = require(`./images/turn2.png`);
@@ -49,6 +49,10 @@ function Game({ navigation }) {
 
   //sets initial player room image on load
   useEffect(() => {
+    if(checkSave === true){
+        getSaveData();
+        setCheckSave(false); 
+    }
     imageSelector(playerRoom);
   }, [playerRoom]);
 
@@ -121,7 +125,7 @@ function Game({ navigation }) {
   }
 
   const hpCalc =() =>{
-    let hpPercent = playerHealth/10;
+    let hpPercent = playerHealth/5;
     setHpBar(hpPercent)
   }
 const upArrow = ()=>{
@@ -140,7 +144,22 @@ setPlayerRoom(roomList.default[playerRoom].north);
 const sword = () =>{
   console.log('SWING')
           //if enemy is in room. roll to hit enemy. if successful. hit enemy. and minus their health. add to combat logs as 
+         if(playerRoom === enemyRoom){
+          addOntoLog('You ready your blade to strike the enemy.')
+          let roll = Math.floor(Math.random() * 5);
+          if (roll > 1){
+            addOntoLog('Your blade slices into your opponent.')
+              setEnemyHealth(enemyHealth -2)
+          
+        }else{
+          addOntoLog('Your blade missed your opponent.')
+        }
+        console.log(enemyHealth, 'enemy health')}
+}         
 
+const opponentTurn =()=>{
+  //opponent needs to update his position through the maze and if in melee begin to attack.
+  
 }
       //this format is used for adding onto chat log for combat
 const addOntoLog = (message) => {
@@ -169,8 +188,9 @@ const addOntoLog = (message) => {
                         <Text>{playerRoom === enemyRoom ? 'The enemy is in this room' : ''}</Text>
                           </>}
                         data={messageLog}
-                        renderItem={({item})=><Text>{item}</Text>}
-                        keyExtractor={(item) => item.id}
+                        keyExtractor={(item, index) => index.toString()} 
+                        renderItem={({item})=><Text  key={item.id}>{item}</Text>}
+                       
                         ref={flatListRef}
             onContentSizeChange={()=> flatListRef.current.scrollToEnd()}
                         />
@@ -193,7 +213,7 @@ const addOntoLog = (message) => {
       </View>
 {/* ROW 3 */}
       <View style={styles.buttonRow}>
-            <Button  mode="contained" onPress={()=>sword()} style={styles.button}>⚔ </Button>
+            <Button disabled={playerRoom === enemyRoom ? false:true} mode="contained" onPress={()=>sword()} style={styles.button}>⚔ </Button>
                     <Button  mode="contained" disabled={roomList.default[playerRoom].south ? false:true} onPress={()=>downArrow()} style={styles.button}>▼</Button>
                           <Button   mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>⁀➴</Button>
       </View>
@@ -221,9 +241,7 @@ const addOntoLog = (message) => {
           </View>
           <Button Button style={styles.helpButton} mode="text" color='white' onPress={()=>navigation.dispatch(StackActions.replace("Intro"))}>Main Menu</Button>   
                <Button Button style={styles.helpButton} mode="text" color='white' onPress={()=>{
-                console.log(roomList);
-                imageSelector(2);
-                console.log(roomList.default[1]);
+                updateSave();
                 }}>Save</Button>  
       </View>
     </View>

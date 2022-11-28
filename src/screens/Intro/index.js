@@ -3,10 +3,11 @@
 //clicking start will push to loading screen.
 
 
-import React from "react";
+import React, {useContext, useState} from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image, Pressable } from "react-native";
 import { StackActions } from "@react-navigation/native";
 import {Button, useTheme} from 'react-native-paper';
+import { GameContext } from "../../context/GameContext";
 
 
 const splash = require('./titleScreen3.png')
@@ -14,7 +15,7 @@ const banner = require('./titleBanner.png')
 
 function Intro({ navigation }) {
   const theme = useTheme();
-
+  const {setCheckSave, checkSave} = useContext(GameContext);
 
 
   return (
@@ -26,7 +27,10 @@ function Intro({ navigation }) {
 
        {/* Cut the color if it doesn't look good. ask */}
        <Button style={styles.button} color='#F5DF68' mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Game"))}>New Game</Button>
-       <Button style={styles.button} color='#F5DF68' mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Game"))}>Load </Button>
+       <Button style={styles.button} color='#F5DF68' mode="contained" onPress={()=>{
+        setCheckSave(true);
+        navigation.dispatch(StackActions.replace("Game"));
+        }}>Load </Button>
        <Button  style={styles.button} color='#F5DF68' mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("About"))}>About</Button>
        <Button style={styles.button} color='#F5DF68' mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Account"))}>Profile</Button>
        </View>
