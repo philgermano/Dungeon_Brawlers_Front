@@ -18,7 +18,7 @@ import { GameContext } from "../../context/GameContext";
 function Game({ navigation }) {
   const roomList = require('../../resources/roomList.js')
   const theme = useTheme();
-  const { playerRoom, setPlayerRoom, enemyRoom, setEnemyRoom, playerHealth, setPlayerHealth, enemyHealth, setEnemyHealth, getSaveData,  updateSave, checkSave, setCheckSave, gameData } = useContext(GameContext);
+  const { playerRoom, setPlayerRoom, enemyRoom, setEnemyRoom, playerHealth, setPlayerHealth, enemyHealth, setEnemyHealth, getSaveData,  updateSave, checkSave, setCheckSave, gameData,loadDefaultStats } = useContext(GameContext);
 
   const flatListRef = useRef();
 
@@ -50,10 +50,12 @@ function Game({ navigation }) {
   //sets initial player room image on load
   useEffect(() => {
     if(checkSave ===true){
+         if(gameData== false){
       setPlayerHealth(gameData.game.playerHealth);
       setPlayerRoom(gameData.game.playerRoom);
       setEnemyHealth(gameData.game.enemyHealth);
       setEnemyRoom(gameData.game.enemyRoom);
+        }
       setCheckSave(false);
     }
 
