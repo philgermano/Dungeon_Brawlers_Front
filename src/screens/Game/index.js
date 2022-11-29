@@ -55,6 +55,8 @@ function Game({ navigation }) {
       setPlayerRoom(gameData.game.playerRoom);
       setEnemyHealth(gameData.game.enemyHealth);
       setEnemyRoom(gameData.game.enemyRoom);
+        }else{
+          loadDefaultStats();
         }
       setCheckSave(false);
     }
@@ -152,21 +154,36 @@ const sword = () =>{
   console.log('SWING')
           //if enemy is in room. roll to hit enemy. if successful. hit enemy. and minus their health. add to combat logs as 
          if(playerRoom === enemyRoom){
-          addOntoLog('You ready your blade to strike the enemy.')
           let roll = Math.floor(Math.random() * 5);
           if (roll > 1){
             addOntoLog('Your blade slices into your opponent.')
-              setEnemyHealth(enemyHealth -2)
+              setEnemyHealth(enemyHealth -0)
           
         }else{
           addOntoLog('Your blade missed your opponent.')
         }
         console.log(enemyHealth, 'enemy health')}
+        
+          if(enemyHealth < 0){
+            navigation.dispatch(StackActions.replace("Victory"))
+          }
+
+         opponentTurn(); 
+         
 }         
 
 const opponentTurn =()=>{
-  //opponent needs to update his position through the maze and if in melee begin to attack.
-  
+  //opponent needs to update his position through the maze and if in melee begin to attack.if (enemyRoom === playerRoom){
+          let roll = Math.floor(Math.random() * 5);
+          if (roll > 1){
+              addOntoLog("The enemy's strike catches you.")
+                setPlayerHealth(playerHealth -2)
+              }else{
+                addOntoLog('You sidestep the enemies blade.')
+              }
+          if(playerHealth < 0){
+            navigation.dispatch(StackActions.replace("Defeat"))
+          }    
 }
       //this format is used for adding onto chat log for combat
 const addOntoLog = (message) => {
@@ -206,23 +223,21 @@ const addOntoLog = (message) => {
 {/* ROW 1 */}
     <View style={[styles.controlPanel, { backgroundColor: theme.colors.background }]}>
             <View style={styles.buttonRow}>
-                <Button  mode="contained"  onPress={()=>setMessageLog([])} style={styles.button}>👁️‍🗨️ </Button>
+                <Button  mode="contained"  style={styles.button}> </Button>
                     <Button disabled={roomList.default[playerRoom].north ? false:true}  mode="contained" onPress={()=>upArrow()} style={styles.button}>▲ </Button>
-                      <Button   mode="contained" onPress={()=>hpCalc()} style={styles.button}>HP </Button>
+                      <Button   mode="contained"  style={styles.button}> </Button>
             </View>
 {/* ROW 2 */}
       <View style={styles.buttonRow}>
            <Button  disabled={roomList.default[playerRoom].west ? false:true} mode="contained" onPress={()=>LeftArrow()} style={styles.button}>◀</Button>
-                  <Button  mode="contained" onPress={()=>{
-                    addOntoLog('howdy');
-                  }} style={styles.button}>Log </Button>
+           <Button disabled={playerRoom === enemyRoom ? false:true} mode="contained" onPress={()=>sword()} style={styles.button}>⚔ </Button>
                            <Button  disabled={roomList.default[playerRoom].east ? false:true} mode="contained" onPress={()=>rightArrow()} style={styles.button}>▶</Button>
       </View>
 {/* ROW 3 */}
       <View style={styles.buttonRow}>
-            <Button disabled={playerRoom === enemyRoom ? false:true} mode="contained" onPress={()=>sword()} style={styles.button}>⚔ </Button>
+      <Button  mode="contained"  style={styles.button}> </Button>
                     <Button  mode="contained" disabled={roomList.default[playerRoom].south ? false:true} onPress={()=>downArrow()} style={styles.button}>▼</Button>
-                          <Button   mode="contained" onPress={()=>console.log('pressed')} style={styles.button}>⁀➴</Button>
+                          <Button   mode="contained"  style={styles.button}></Button>
       </View>
       </View>
 
@@ -238,8 +253,12 @@ const addOntoLog = (message) => {
             >
               <View style={styles.centeredView}>
                 <View style={[styles.modalView, { backgroundColor: theme.colors.background }]}>
-                  <Text style={styles.modalText}>Game Instructions</Text>
-                  <Button mode="contained"
+                <Text style={styles.modalText}>Search the dungeon for your opponent.{'\n'}defeat them to be victorious.</Text>
+                  <Text style={styles.modalText}>▲▶◀▼</Text>
+                  <Text style={styles.modalText}>Travel from room to room using these arrows.</Text>
+                  <Text style={styles.modalText}>⚔</Text>
+                  <Text style={styles.modalText}>Use your sword to slay them.</Text>
+                  <Button style={{top:'20%'}} color='#F5DF68' mode="contained"
                     onPress={() => setModalVisible(!modalVisible)}>Hide</Button>
                 </View>
               </View>
@@ -337,6 +356,7 @@ const styles = StyleSheet.create({
     elevation: 5,
     borderColor: 'black',
     borderWidth:2,
+    height:'70%'
   },
   textStyle: {
     color: "white",

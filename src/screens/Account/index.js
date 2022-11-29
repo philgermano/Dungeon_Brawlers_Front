@@ -8,7 +8,7 @@ import { GameContext } from "../../context/GameContext";
 
 const AccountScreen = ({ navigation }) => {
   const { logout, loggedIn, userData } = useContext(AuthContext);
-  const {  clearSave} = useContext(GameContext);
+  const {clearSave} = useContext(GameContext);
 
   const theme = useTheme();
 
@@ -29,12 +29,12 @@ const AccountScreen = ({ navigation }) => {
         </View>
       )}
 
-      <Button style={styles.button} mode="contained" onPress={() => logout()}>
+      <Button style={styles.button} color='#F5DF68' mode="contained" onPress={() => logout()}>
         Logout
       </Button>
-      <Button style={styles.button} mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Intro"))}>Back</Button>
+      <Button style={styles.button} color='#F5DF68' mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Intro"))}>Back</Button>
 
-      <Button style={styles.button} mode="contained" onPress={()=>clearSave()}>Delete Save</Button>
+      <Button style={styles.button} color='#F5DF68' mode="contained" onPress={()=>clearSave()}>Delete Save</Button>
 
     </View>
   );

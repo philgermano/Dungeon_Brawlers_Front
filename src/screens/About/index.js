@@ -20,7 +20,9 @@ function About({ navigation }) {
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       
       <Text>About</Text>
-      <Button  color='#F5DF68' mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Intro"))}>Back</Button>
+      <Text>Add in details about the project.</Text>
+      <Text>Like resources used and stuff.</Text>
+      <Button style={styles.button}  color='#F5DF68' mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Intro"))}>Back</Button>
 
     </View>
   );
@@ -29,8 +31,12 @@ function About({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
+  },
+  button:{
+    marginTop:15,
+    position:'absolute',
+    bottom:'10%'
   },
 });
 
