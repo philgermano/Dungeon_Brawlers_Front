@@ -9,13 +9,13 @@ const GameContext = React.createContext();
 const GameContextProvider = (props) => {
 
   const { logout, loggedIn, userData} = useContext(AuthContext);
-  const [gameData, setGameData] = useState('hello');
+  const [gameData, setGameData] = useState();
   const [playerRoom, setPlayerRoom] = useState(1);
-  const [enemyRoom, setenemyRoom] = useState(3);
-  const [playerHealth, setPlayerHealth] = useState(10);
-  const [checkSave, setCheckSave] = useState(null);
- 
-
+  const [enemyRoom, setEnemyRoom] = useState(3);
+  const [playerHealth, setPlayerHealth] = useState(5);
+  const [checkSave, setCheckSave] = useState(false);
+  const [enemyHealth, setEnemyHealth] = useState(5)
+  const [loadDefault, setLoadDefault] = useState(false);
 
 //send the current game details back to save the game progress
   const saveGame = () =>{
@@ -26,30 +26,39 @@ const GameContextProvider = (props) => {
         body: JSON.stringify({
             username: userData.nickname,
             email: userData.email,
-            playerDet: { location:playerRoom, health:playerHealth},
-            enemyDet: {location:enemyRoom},
+            playerRoom:playerRoom , 
+            playerHealth:playerHealth,
+            enemyRoom:enemyRoom, 
+            enemyHealth:enemyHealth,
         }),
         headers: {
             'Content-Type': 'application/json'
         }      
     }).then(res =>res.json())
     .then(resJson =>{
-        console.log('email', userData.email)
-        console.log(playerRoom)
-        console.log(playerHealth)
+        // console.log('email', userData.email)
+        // console.log(playerRoom)
+        // console.log(playerHealth)
 
     })
-   .catch (err=>console.log("error logging out..", err));
+   .catch (err=>console.log("error logging", err));
   
   }
 
 
   //get data for user instance of a game
   const getSaveData = async () => {
-    fetch(`${REACT_APP_BACKEND_URL}/${userData.email}`)
+    await fetch(`${REACT_APP_BACKEND_URL}/${userData.email}`)
     .then(res =>{return res.json()})
     .then(json => setGameData(json))
-    .then(console.log(gameData))
+    .then((data)=>{
+      // console.log(gameData, "gamedata");
+      // console.log(gameData.game, 'gamedata.game');
+      // setPlayerHealth(gameData.game.playerHealth);
+      // setPlayerRoom(gameData.game.playerRoom);
+      // setEnemyHealth(gameData.game.enemyHealth);
+      // setEnemyRoom(gameData.game.enemyRoom);
+    })
   };
 
 // executed when game start screen opens happens
@@ -67,15 +76,24 @@ const GameContextProvider = (props) => {
 // }, [checkSave]);
 
 
+const loadDefaultStats=()=>{
+  setPlayerHealth(5);
+  setPlayerRoom(1);
+  setEnemyHealth(5);
+  setEnemyRoom(3);
+}
+
 //update the current saved data of the users game
   const updateSave = async () => {
-    fetch(`${REACT_APP_BACKEND_URL}/${userData.email}`, {
+    await fetch(`${REACT_APP_BACKEND_URL}/${userData.email}`, {
       method: 'PUT',
       body: JSON.stringify({
         username: userData.nickname,
-        email: userData.email,
-        playerDet: { location:playerRoom, health:playerHealth},
-        enemyDet: {location:enemyRoom},
+            email: userData.email,
+            playerRoom:playerRoom , 
+            playerHealth:playerHealth,
+            enemyRoom:enemyRoom, 
+            enemyHealth:enemyHealth,
     }),
       headers:{
         'Content-Type': 'application/json'
@@ -83,9 +101,9 @@ const GameContextProvider = (props) => {
       }).then((res) => res.json())
   .then((data) => {
     //console.log("success", data);
-    getSaveData()
+    //getSaveData()
     })
-          }
+}
 
   const clearSave = async () => {
     try {
@@ -107,11 +125,16 @@ const GameContextProvider = (props) => {
     playerRoom, 
     setPlayerRoom,
     enemyRoom, 
-    setenemyRoom,
+    setEnemyRoom,
     playerHealth, 
     setPlayerHealth,
+    enemyHealth,
+    setEnemyHealth,
     checkSave, 
-    setCheckSave
+    setCheckSave,
+    setLoadDefault,
+    loadDefault,
+    loadDefaultStats
   };
 
     

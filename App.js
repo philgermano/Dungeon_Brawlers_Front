@@ -19,12 +19,13 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 // Screens
 import Intro from './src/screens/Intro';
-import LoadingScreen from './src/screens/LoadingScreen';
-import LoginScreen from './src/screens/LoginScreen';
-import AccountScreen from './src/screens/AccountScreen';
-import CrudTest from './src/screens/CrudTest';
+import Loading from './src/screens/Loading';
+import Login from './src/screens/Login';
+import Account from './src/screens/Account';
 import About from './src/screens/About';
 import Game from './src/screens/Game';
+import Victory from './src/screens/Victory';
+import Defeat from './src/screens/Defeat';
 
 import {AuthContextProvider} from './src/context/AuthContext';
 import { GameContextProvider } from './src/context/GameContext';
@@ -44,10 +45,11 @@ const App = () => {
           <Stack.Screen name="Intro" component={Intro} />
           <Stack.Screen name="About" component={About} />
           <Stack.Screen name="Game" component={Game} />
-            <Stack.Screen name="Loading" component={LoadingScreen} />
-            <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="Account" component={AccountScreen} />
-            <Stack.Screen name="Crud" component={CrudTest} />
+          <Stack.Screen name="Victory" component={Victory} />
+          <Stack.Screen name="Defeat" component={Defeat} />
+            <Stack.Screen name="Loading" component={Loading} />
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Account" component={Account} />
           </Stack.Navigator>
         </NavigationContainer>
         </GameContextProvider>
