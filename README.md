@@ -18,12 +18,14 @@ Wire Frames
 Models including field names and their datatypes
 
 Game Model:<br />
+id: string,<br />
 email: string,<br />
 username: string,<br />
 enemyHealth: number,<br />
+enemyRoom: number,<br />
 playerHealth: number,<br />
-playerLocation: number,<br />
-enemyLocation: number,<br />
+playerRoom: number,<br />
+
 
 
 

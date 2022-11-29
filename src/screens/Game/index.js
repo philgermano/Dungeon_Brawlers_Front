@@ -176,7 +176,7 @@ setMessageLog([]);
               }
 
 const sword = () =>{
-  console.log('SWING')
+  //console.log('SWING')
           
          if(playerRoom === enemyRoom){
           let roll = Math.floor(Math.random() * 5);
@@ -188,7 +188,8 @@ const sword = () =>{
         }else{
           addOntoLog('Your blade missed your opponent.')
         }
-        console.log(enemyHealth, 'enemy health')}
+        // console.log(enemyHealth, 'enemy health')
+      }
         
 
          opponentTurn(); 
@@ -205,7 +206,7 @@ const opponentTurn =()=>{
 }
 
 const opponentMove =()=>{
-  console.log('opponent is moving')
+  //console.log('opponent is moving')
 
 }
 
