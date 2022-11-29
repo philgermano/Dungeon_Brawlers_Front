@@ -9,7 +9,7 @@ const GameContext = React.createContext();
 const GameContextProvider = (props) => {
 
   const { logout, loggedIn, userData} = useContext(AuthContext);
-  const [gameData, setGameData] = useState();
+  const [gameData, setGameData] = useState({game:null});
   const [playerRoom, setPlayerRoom] = useState(1);
   const [enemyRoom, setEnemyRoom] = useState(3);
   const [playerHealth, setPlayerHealth] = useState(5);
