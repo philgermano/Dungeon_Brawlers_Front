@@ -33,7 +33,7 @@ function Intro({ navigation }) {
        <Button style={styles.button} color='#F5DF68' mode="contained" onPress={()=>{
         getSaveData();
         setCheckSave(true);
-        setTimeout(()=>navigation.dispatch(StackActions.replace("Game")),300);
+        setTimeout(()=>navigation.dispatch(StackActions.replace("Game")),500);
         }}>Load </Button>
        <Button  style={styles.button} color='#F5DF68' mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("About"))}>About</Button>
        <Button style={styles.button} color='#F5DF68' mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Account"))}>Profile</Button>

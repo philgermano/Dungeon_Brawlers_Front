@@ -18,10 +18,20 @@ function About({ navigation }) {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      
-      <Text>About</Text>
-      <Text>Add in details about the project.</Text>
-      <Text>Like resources used and stuff.</Text>
+      <Text></Text>
+      <Text>Project Details</Text>
+      <Text></Text>
+      <Text>React-Native, Node.js, Express, MongoDB, JavaScript </Text>
+      <Text></Text>
+      <Text>React-Native-Navigation for routing</Text>
+      <Text></Text>
+      <Text>Auth0 for user authentication</Text>
+      <Text></Text>
+      <Text>This game was built in the style of an old school dungeon crawler. The dungeon is built out of a series of individual rooms.</Text>
+      <Text></Text>
+      <Text>The opponent moves through the dungeon searching for you and will attack once you meet.</Text>
+      <Text></Text>
+
       <Button style={styles.button}  color='#F5DF68' mode="contained" onPress={()=>navigation.dispatch(StackActions.replace("Intro"))}>Back</Button>
 
     </View>
@@ -32,6 +42,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+    padding:25
   },
   button:{
     marginTop:15,
