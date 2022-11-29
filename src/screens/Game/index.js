@@ -74,6 +74,13 @@ function Game({ navigation }) {
     }  
   }, [playerHealth, enemyHealth]);
 
+  //should these be combined? might be wasteful.
+
+  // useEffect(() => {
+  //   if(enemyHealth < 1 && checkSave === false){
+  //     navigation.dispatch(StackActions.replace("Victory"))
+  //   }  
+  // }, [enemyHealth]);
 
 
   const imageSelector = () =>{
