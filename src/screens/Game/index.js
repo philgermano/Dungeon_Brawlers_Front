@@ -69,14 +69,11 @@ function Game({ navigation }) {
     
     if(playerHealth < 1 && checkSave === false){
       navigation.dispatch(StackActions.replace("Defeat"))
-    }    
-  }, [playerHealth]);
-
-  useEffect(() => {
-    if(enemyHealth < 1 && checkSave === false){
+    }else if(enemyHealth < 1 && checkSave === false){
       navigation.dispatch(StackActions.replace("Victory"))
     }  
-  }, [enemyHealth]);
+  }, [playerHealth, enemyHealth]);
+
 
 
   const imageSelector = () =>{
