@@ -1,11 +1,6 @@
 Dungeon Brawler
 
-Project Description
-Include:
-
-General App Idea/Purpose
-
-A React-Native app game themed after old school dungeon crawlers and the Combat Hero game books. It is turn based with a map built out of a series of rooms. The player will navigate the dungeon while trying to catch their opponent and defeat them. 
+This is a React-Native game themed after old school dungeon crawlers and the Combat Hero game books. It is turn based with a map built out of a series of rooms. The player will navigate the dungeon while trying to catch their opponent and defeat them. 
 
 The player can log in using their google account through Auth0. They can save their game to the backend and load the data from their to start from where they left off. 
 
@@ -22,41 +17,36 @@ Wire Frames
 
 Models including field names and their datatypes
 
-Game Model:
-email: string,
-username: string
-enemyHealth: number,
-playerHealth: number,
-playerLocation: number,
-enemyLocation: number,
+Game Model:<br />
+email: string,<br />
+username: string,<br />
+enemyHealth: number,<br />
+playerHealth: number,<br />
+playerLocation: number,<br />
+enemyLocation: number,<br />
 
 
 
 
-User Stories
-User stories detailing app functionality
-
-As a user, I want to be able to explore the dungeon and defeat my opponent.
-As a user, I want to be able to log in and have my game info recorded.
-As a user, I want to be able to stop a match vs the computer and continue it later.
+User Stories<br />
+As a user, I want to be able to explore the dungeon and defeat my opponent.<br />
+As a user, I want to be able to log in and have my game info recorded.<br />
+As a user, I want to be able to stop a match vs the computer and continue it later.<br />
 
 
 
-MVP Goals
-Full Crud
-Turn base gameplay vs a computer opponent
-User login
-Players create games that track match details which are deleted once match concludes.
+MVP Goals<br />
+Full Crud<br />
+Turn base gameplay vs a computer opponent<br />
+User login<br />
+Players create games that track match details which are deleted once match concludes.<br />
 
-Stretch Goals
-Multiplayer using socket.io
-Win rate and ranking through a leaderboard
-
-Unresolved Problems
-I need to add delays in for actions to force space and prevent spamming inputs. I just ran out of time.
+Stretch Goals<br />
+Multiplayer using socket.io<br />
+Win rate and ranking through a leaderboard<br />
 
 
-Future Plans
-I want to add more methods of interacting with the opponent and the world. I have a few written up that I will be implementing later.
-I would like to take this framework and expand it into a fuller game.
-I would like to add more descriptive text and have a list of combat text to pull from.
+Future Plans<br />
+I want to add more methods of interacting with the opponent and the world. I have a few written up that I will be implementing later.<br />
+I would like to take this framework and expand it into a fuller game.<br />
+I would like to add more descriptive text and have a list of combat text to pull from.<br />
