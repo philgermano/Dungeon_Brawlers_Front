@@ -113,6 +113,7 @@ const loadDefaultStats=()=>{
     } catch (err) {
       console.log("error logging out..", err);
     }
+    setGameData(undefined);
   };
 
   const value = {

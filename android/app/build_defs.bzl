@@ -17,3 +17,21 @@ def create_jar_targets(jarfiles):
             name = name,
             binary_jar = jarfile,
         )
+
+android {
+....
+signingConfigs {
+  release {
+    storeFile file('your_key_name.keystore')
+    storePassword System.console().readLine("\nKeystore password:")
+    keyAlias System.console().readLine("\nAlias: ")
+    keyPassword System.console().readLine("\Alias password: ")
+   }
+}
+  buildTypes {
+    release {
+      ....
+      signingConfig signingConfigs.release
+    }
+  }
+}

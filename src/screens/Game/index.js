@@ -50,20 +50,37 @@ function Game({ navigation }) {
   //sets initial player room image on load
   useEffect(() => {
     if(checkSave ===true){
-         if(gameData== false){
-      setPlayerHealth(gameData.game.playerHealth);
-      setPlayerRoom(gameData.game.playerRoom);
-      setEnemyHealth(gameData.game.enemyHealth);
-      setEnemyRoom(gameData.game.enemyRoom);
-        }else{
+         if(gameData.game == null){
           loadDefaultStats();
+        }else{
+          setPlayerHealth(gameData.game.playerHealth);
+          setPlayerRoom(gameData.game.playerRoom);
+          setEnemyHealth(gameData.game.enemyHealth);
+          setEnemyRoom(gameData.game.enemyRoom);
         }
       setCheckSave(false);
     }
-
-
     imageSelector(playerRoom);
   }, [playerRoom]);
+
+//catches hp changes and adjusts play hp bar
+  useEffect(() => {
+    hpCalc();
+    
+    if(playerHealth < 1 && checkSave === false){
+      navigation.dispatch(StackActions.replace("Defeat"))
+    }else if(enemyHealth < 1 && checkSave === false){
+      navigation.dispatch(StackActions.replace("Victory"))
+    }  
+  }, [playerHealth, enemyHealth]);
+
+  //should these be combined? might be wasteful.
+
+  // useEffect(() => {
+  //   if(enemyHealth < 1 && checkSave === false){
+  //     navigation.dispatch(StackActions.replace("Victory"))
+  //   }  
+  // }, [enemyHealth]);
 
 
   const imageSelector = () =>{
@@ -134,58 +151,75 @@ function Game({ navigation }) {
   }
 
   const hpCalc =() =>{
-    let hpPercent = playerHealth/5;
+    let hpPercent = playerHealth/6;
     setHpBar(hpPercent)
   }
 const upArrow = ()=>{
+opponentTurn(); 
 setPlayerRoom(roomList.default[playerRoom].north);
+setMessageLog([]);
 }
     const downArrow =(room)=>{
+    opponentTurn(); 
     setPlayerRoom(roomList.default[playerRoom].south)
+    setMessageLog([]);
     }
         const LeftArrow = ()=>{
+          opponentTurn(); 
           setPlayerRoom(roomList.default[playerRoom].west);
+          setMessageLog([]);
           }
               const rightArrow =(room)=>{
+              opponentTurn(); 
               setPlayerRoom(roomList.default[playerRoom].east)
+              setMessageLog([]);
               }
 
 const sword = () =>{
   console.log('SWING')
-          //if enemy is in room. roll to hit enemy. if successful. hit enemy. and minus their health. add to combat logs as 
+          
          if(playerRoom === enemyRoom){
           let roll = Math.floor(Math.random() * 5);
           if (roll > 1){
             addOntoLog('Your blade slices into your opponent.')
-              setEnemyHealth(enemyHealth -0)
-          
+              setEnemyHealth(enemyHealth -2)
+                
+
         }else{
           addOntoLog('Your blade missed your opponent.')
         }
         console.log(enemyHealth, 'enemy health')}
         
-          if(enemyHealth < 0){
-            navigation.dispatch(StackActions.replace("Victory"))
-          }
 
          opponentTurn(); 
          
 }         
 
 const opponentTurn =()=>{
-  //opponent needs to update his position through the maze and if in melee begin to attack.if (enemyRoom === playerRoom){
-          let roll = Math.floor(Math.random() * 5);
-          if (roll > 1){
-              addOntoLog("The enemy's strike catches you.")
-                setPlayerHealth(playerHealth -2)
-              }else{
-                addOntoLog('You sidestep the enemies blade.')
-              }
-          if(playerHealth < 0){
-            navigation.dispatch(StackActions.replace("Defeat"))
-          }    
+    
+    if (playerRoom === enemyRoom){
+      opponentAttack();
+    }else{
+      opponentMove();
+    }  
 }
-      //this format is used for adding onto chat log for combat
+
+const opponentMove =()=>{
+  console.log('opponent is moving')
+
+}
+
+const opponentAttack =()=>{
+  let roll = Math.floor(Math.random() * 5);
+  if (roll > 1){
+      addOntoLog("The enemy's strike catches you.")
+        setPlayerHealth(playerHealth -2)
+      }else{
+        addOntoLog('You sidestep the enemies blade.')
+      }
+      
+}
+      //this is used for adding onto chat log for combat
 const addOntoLog = (message) => {
   setMessageLog(oldArray => [...oldArray, `${message}`]);
 };
