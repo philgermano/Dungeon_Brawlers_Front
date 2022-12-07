@@ -235,6 +235,27 @@ const opponentMove =()=>{
                   }
           //east direction
           case 1:
+            switch(true){
+              case roomList.default[enemyRoom].east !== false:
+                console.log('eastwrd now', enemyDirection,'enemy directio,')
+                setEnemyRoom(roomList.default[enemyRoom].east)
+                enemyDirection.current = 1;
+                break;
+              case roomList.default[enemyRoom].wast !== false:
+                console.log('west now', enemyDirection,'enemy directio,')
+                setEnemyRoom(roomList.default[enemyRoom].west)
+                enemyDirection.current = 2;
+                break; 
+              case roomList.default[enemyRoom].east !== false:
+                console.log('south now', enemyDirection,'enemy directio,')
+                setEnemyRoom(roomList.default[enemyRoom].south)
+                enemyDirection.current = 2;
+                break;
+              case roomList.default[enemyRoom].north !== false:
+                console.log('north now', enemyDirection,'enemy directio,')
+                setEnemyRoom(roomList.default[enemyRoom].north)
+                break;  
+          }
           //west direction
           case 2:
           //south direction
