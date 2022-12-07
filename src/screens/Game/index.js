@@ -214,21 +214,21 @@ const opponentMove =()=>{
           case 0:
                   switch(true){
                       case roomList.default[enemyRoom].north !== false:
-                        console.log('north now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
+                        //console.log('north now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
                         setEnemyRoom(roomList.default[enemyRoom].north)
                         break;
                       case roomList.default[enemyRoom].east !== false:
-                        console.log('east now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
+                        //console.log('east now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
                         setEnemyRoom(roomList.default[enemyRoom].east)
                         enemyDirection.current = 1;
                         break;
                       case roomList.default[enemyRoom].west !== false:
-                        console.log('west now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
+                        //console.log('west now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
                         setEnemyRoom(roomList.default[enemyRoom].west)
                         enemyDirection.current = 2;
                         break; 
                       case roomList.default[enemyRoom].south !== false:
-                        console.log('south now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
+                        //console.log('south now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
                         setEnemyRoom(roomList.default[enemyRoom].south)
                         enemyDirection.current = 3;
                         break;
@@ -238,21 +238,21 @@ const opponentMove =()=>{
           case 1:
                   switch(true){
                     case roomList.default[enemyRoom].east !== false:
-                      console.log('eastwrd now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
+                      //console.log('eastwrd now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
                       setEnemyRoom(roomList.default[enemyRoom].east)
                       break;
                     case roomList.default[enemyRoom].south !== false:
-                      console.log('south now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
+                      //console.log('south now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
                       setEnemyRoom(roomList.default[enemyRoom].south)
                       enemyDirection.current = 3;
                       break;
                     case roomList.default[enemyRoom].north !== false:
-                      console.log('north now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
+                      //console.log('north now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
                       setEnemyRoom(roomList.default[enemyRoom].north)
                       enemyDirection.current = 0;
                       break;  
                     case roomList.default[enemyRoom].west !== false:
-                      console.log('west now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
+                      //console.log('west now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
                       setEnemyRoom(roomList.default[enemyRoom].west)
                       enemyDirection.current = 2;
                       break; 
@@ -263,21 +263,21 @@ const opponentMove =()=>{
           case 2:
                   switch(true){
                     case roomList.default[enemyRoom].west !== false:
-                      console.log('west now', enemyDirection,'enemy directio', enemyRoom, 'enemy room')
+                      //console.log('west now', enemyDirection,'enemy directio', enemyRoom, 'enemy room')
                       setEnemyRoom(roomList.default[enemyRoom].west)
                       break; 
                     case roomList.default[enemyRoom].south !== false:
-                      console.log('south now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
+                      //console.log('south now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
                       setEnemyRoom(roomList.default[enemyRoom].south)
                       enemyDirection.current = 3;
                       break;
                     case roomList.default[enemyRoom].north !== false:
-                      console.log('north now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
+                      //console.log('north now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
                       setEnemyRoom(roomList.default[enemyRoom].north)
                       enemyDirection.current = 0;
                       break;  
                     case roomList.default[enemyRoom].east !== false:
-                      console.log('eastwrd now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
+                      //console.log('eastwrd now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
                       setEnemyRoom(roomList.default[enemyRoom].east)
                       enemyDirection.current = 1;
                       break;
@@ -287,21 +287,21 @@ const opponentMove =()=>{
           case 3:
                   switch(true){
                     case roomList.default[enemyRoom].south !== false:
-                      console.log('south now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
+                      //console.log('south now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
                       setEnemyRoom(roomList.default[enemyRoom].south)
                       break; 
                     case roomList.default[enemyRoom].east !== false:
-                      console.log('eastwrd now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
+                      //console.log('eastwrd now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
                       setEnemyRoom(roomList.default[enemyRoom].east)
                       enemyDirection.current = 1;
                       break;
                     case roomList.default[enemyRoom].west !== false:
-                      console.log('west now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
+                      //console.log('west now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
                       setEnemyRoom(roomList.default[enemyRoom].west)
                       enemyDirection.current = 2;
                       break; 
                     case roomList.default[enemyRoom].north !== false:
-                      console.log('north now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
+                      //console.log('north now', enemyDirection,'enemy directio,','enemy directio', enemyRoom, 'enemy room')
                       setEnemyRoom(roomList.default[enemyRoom].north)
                       enemyDirection.current = 0;
                       break; 
