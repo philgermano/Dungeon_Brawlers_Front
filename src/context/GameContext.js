@@ -11,7 +11,7 @@ const GameContextProvider = (props) => {
   const { logout, loggedIn, userData} = useContext(AuthContext);
   const [gameData, setGameData] = useState({game:null});
   const [playerRoom, setPlayerRoom] = useState(1);
-  const [enemyRoom, setEnemyRoom] = useState(3);
+  const [enemyRoom, setEnemyRoom] = useState(Math.round(Math.random() * 15) +1);
   const [playerHealth, setPlayerHealth] = useState(5);
   const [checkSave, setCheckSave] = useState(false);
   const [enemyHealth, setEnemyHealth] = useState(5)
@@ -83,7 +83,7 @@ const loadDefaultStats=()=>{
   setPlayerHealth(5);
   setPlayerRoom(1);
   setEnemyHealth(5);
-  setEnemyRoom(3);
+  setEnemyRoom(Math.round(Math.random() * 15) +1);
 }
 
 //update the current saved data of the users game
