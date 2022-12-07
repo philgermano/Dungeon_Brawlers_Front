@@ -18,8 +18,8 @@ const GameContextProvider = (props) => {
   const [loadDefault, setLoadDefault] = useState(false);
 
   //enemy direction 0-4 for 4 cardinal directions.
-  //const enemyDirection = useRef(Math.floor(Math.random * 4))
-  const enemyDirection = useRef(0)
+  const enemyDirection = useRef(Math.round(Math.random() * 4))
+
 //send the current game details back to save the game progress
   const saveGame = () =>{
             
