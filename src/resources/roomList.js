@@ -3,7 +3,7 @@ const roomList = {
         north: 15,
         south:false,
         west:false,
-        east:2,
+        east: 2,
         description:'Large skulls lie on the floor. \nVines and other plants have grown into the stonework. \nThere exits to the north and east.',
     },
     2:{
