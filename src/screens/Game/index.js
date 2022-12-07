@@ -214,20 +214,23 @@ const opponentMove =()=>{
           case 0:
                   switch(true){
                       case roomList.default[enemyRoom].north !== false:
-                        console.log('north works')
+                        console.log('north works', enemyDirection,'enemy directio,')
                         setEnemyRoom(roomList.default[enemyRoom].north)
                         break;
                       case roomList.default[enemyRoom].east !== false:
-                        console.log('eastwrd now, north blocked')
+                        console.log('eastwrd now', enemyDirection,'enemy directio,')
                         setEnemyRoom(roomList.default[enemyRoom].east)
+                        enemyDirection.current = 1;
                         break;
                       case roomList.default[enemyRoom].wast !== false:
-                        console.log('eastwrd now, north blocked')
-                       // setEnemyRoom(roomList.default[enemyRoom].easr)
-                        break;  
+                        console.log('west now', enemyDirection,'enemy directio,')
+                        setEnemyRoom(roomList.default[enemyRoom].west)
+                        enemyDirection.current = 2;
+                        break; 
                       case roomList.default[enemyRoom].east !== false:
-                        console.log('eastwrd now, north blocked')
-                       // setEnemyRoom(roomList.default[enemyRoom].easr)
+                        console.log('south now', enemyDirection,'enemy directio,')
+                        setEnemyRoom(roomList.default[enemyRoom].south)
+                        enemyDirection.current = 2;
                         break;
                   }
           //east direction
