@@ -219,6 +219,15 @@ const opponentMove =()=>{
                         break;
                       case roomList.default[enemyRoom].east !== false:
                         console.log('eastwrd now, north blocked')
+                        setEnemyRoom(roomList.default[enemyRoom].east)
+                        break;
+                      case roomList.default[enemyRoom].wast !== false:
+                        console.log('eastwrd now, north blocked')
+                       // setEnemyRoom(roomList.default[enemyRoom].easr)
+                        break;  
+                      case roomList.default[enemyRoom].east !== false:
+                        console.log('eastwrd now, north blocked')
+                       // setEnemyRoom(roomList.default[enemyRoom].easr)
                         break;
                   }
           //east direction
