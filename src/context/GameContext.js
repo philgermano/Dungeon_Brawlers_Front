@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useRef, useContext } from "react";
 import {  REACT_APP_BACKEND_URL } from '@env';
 
 import { AuthContext } from "./AuthContext";
@@ -16,6 +16,9 @@ const GameContextProvider = (props) => {
   const [checkSave, setCheckSave] = useState(false);
   const [enemyHealth, setEnemyHealth] = useState(5)
   const [loadDefault, setLoadDefault] = useState(false);
+
+  //enemy direction 0-4 for 4 cardinal directions.
+  const enemyDirection = useRef(Math.floor(Math.random * 4))
 
 //send the current game details back to save the game progress
   const saveGame = () =>{
