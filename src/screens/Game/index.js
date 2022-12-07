@@ -209,14 +209,24 @@ const opponentMove =()=>{
   //console.log('opponent is moving')
   //if enemy direction is north check passages in a north East West then South order. Set position to the first on that is open. Redo each for  possible direction. make work then make dry
 
-        switch(true){
-          case(enemyDirection.current === 0 && roomList.default[enemyRoom].north !== false):
-              console.log('movement to north is running')
-              break;
-          case(enemyDirection.current === 0&& roomList.default[enemyRoom].north == false):
-              console.log('movement to north is BLOCKED')
-              console.log(typeof(enemyRoom.north), 'type of enemy room north')
-              break;
+        switch(enemyDirection.current){
+          //north direction
+          case 0:
+                  switch(true){
+                      case roomList.default[enemyRoom].north !== false:
+                        console.log('north works')
+                        setEnemyRoom(roomList.default[enemyRoom].north)
+                        break;
+                      case roomList.default[enemyRoom].east !== false:
+                        console.log('eastwrd now, north blocked')
+                        break;
+                  }
+          //east direction
+          case 1:
+          //west direction
+          case 2:
+          //south direction
+          case 3:
         }
 
 }
