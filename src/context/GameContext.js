@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useRef, useContext } from "react";
 import {  REACT_APP_BACKEND_URL } from '@env';
 
 import { AuthContext } from "./AuthContext";
@@ -17,7 +17,10 @@ const GameContextProvider = (props) => {
   const [enemyHealth, setEnemyHealth] = useState(5)
   const [loadDefault, setLoadDefault] = useState(false);
 
-//send the current game details back to save the game progress
+  //intial is random number 0-3 0=north 1=east 2=west =3=south
+  const enemyDirection = useRef(Mathfloor(Math.random() * 4))
+
+  //send the current game details back to save the game progress
   const saveGame = () =>{
             
         console.log('backend address', REACT_APP_BACKEND_URL)
