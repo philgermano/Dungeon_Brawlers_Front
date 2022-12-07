@@ -18,7 +18,7 @@ import { GameContext } from "../../context/GameContext";
 function Game({ navigation }) {
   const roomList = require('../../resources/roomList.js')
   const theme = useTheme();
-  const { playerRoom, setPlayerRoom, enemyRoom, setEnemyRoom, playerHealth, setPlayerHealth, enemyHealth, setEnemyHealth, getSaveData,  updateSave, checkSave, setCheckSave, gameData,loadDefaultStats } = useContext(GameContext);
+  const { playerRoom, setPlayerRoom, enemyRoom, setEnemyRoom, playerHealth, setPlayerHealth, enemyHealth, setEnemyHealth, getSaveData,  updateSave, checkSave, setCheckSave, gameData,loadDefaultStats, enemyDirection } = useContext(GameContext);
 
   const flatListRef = useRef();
 
@@ -193,7 +193,7 @@ const sword = () =>{
         
 
          opponentTurn(); 
-         
+        
 }         
 
 const opponentTurn =()=>{
@@ -207,6 +207,17 @@ const opponentTurn =()=>{
 
 const opponentMove =()=>{
   //console.log('opponent is moving')
+  //if enemy direction is north check passages in a north East West then South order. Set position to the first on that is open. Redo each for  possible direction. make work then make dry
+
+        switch(true){
+          case(enemyDirection.current === 0 && roomList.default[enemyRoom].north !== false):
+              console.log('movement to north is running')
+              break;
+          case(enemyDirection.current === 0&& roomList.default[enemyRoom].north == false):
+              console.log('movement to north is BLOCKED')
+              console.log(typeof(enemyRoom.north), 'type of enemy room north')
+              break;
+        }
 
 }
 
