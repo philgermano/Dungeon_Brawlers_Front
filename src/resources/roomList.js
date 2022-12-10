@@ -83,7 +83,7 @@ const roomList = {
         south:false,
         west:5,
         east:11,
-        description:'There are exits to the east and west',
+        description:'A braizer burns brightly in the corner.\nThe floor is cracked and uneven.\nRoots have torn through the stonework in a few areas.\nThere are exits to the east and west',
     },
     13:{
         north: false, 
