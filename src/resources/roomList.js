@@ -41,7 +41,7 @@ const roomList = {
         south:5,
         west:false,
         east:false,
-        description:'A long dead skeleton is pinned to the stone wall.\nThere are exits to the south and north.',
+        description:'A long dead skeleton is pinned to the stone wall.\nLight shines down from a hole in the ceiling.\nThere are exits to the south and north.',
     },
     7:{
         north: false,
