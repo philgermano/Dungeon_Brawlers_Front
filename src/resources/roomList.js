@@ -4,7 +4,7 @@ const roomList = {
         south:false,
         west:false,
         east: 2,
-        description:'Large skulls lie on the floor. \nVines and other plants have grown into the stonework. \nThere exits to the north and east.',
+        description:'Large skulls lie on the floor. \nVines and other plants have grown into the stonework. \nThere are exits to the north and east.',
     },
     2:{
         north: false,
@@ -104,7 +104,7 @@ const roomList = {
         south:1,
         west:false,
         east:false,
-        description:'There are exits to the north and south.',
+        description:'The walls are smooth stone and candles sight the hall.\nRoots have clawed their way into the stonework and rubble collects in the corners.\nThere are exits to the north and south.',
     },
     0:{
         north: false,
