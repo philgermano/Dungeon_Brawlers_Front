@@ -76,7 +76,7 @@ const roomList = {
         south:false,
         west:12,
         east:false,
-        description:'There are exits for the north and west.',
+        description:'Finely detailed pillars line the passage entrance.\nThe one passage has collapsed and is blocked off.\nThere are exits for the north and west.',
     },
     12:{
         north: false,
