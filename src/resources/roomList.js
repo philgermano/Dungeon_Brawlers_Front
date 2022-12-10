@@ -97,7 +97,7 @@ const roomList = {
         south:15,
         west:false,
         east:13,
-        description:'There are exits to the east and south.',
+        description:'The walls and ceiling have started to collapse here.\nMoss and ferns grow amongst the broken stone.\nThere are exits to the east and south.',
     },
     15:{
         north: 14,
