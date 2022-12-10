@@ -86,11 +86,11 @@ const roomList = {
         description:'There are exits to the east and west',
     },
     13:{
-        north: false,
+        north: false, 
         south:false,
         west:14,
         east:5,
-        description:'There are exits to the east and west',
+        description:'Sconces adorn the walls and some hold lit torches.\nThe walls shift from smooth stone to a rough hewn tunnel.\nGarbage is scattered across the floor.\nThere are exits to the east and west',
     },
     14:{
         north: false,
