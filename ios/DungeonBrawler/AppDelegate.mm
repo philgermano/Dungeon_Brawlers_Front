@@ -15,6 +15,7 @@
 #import <ReactCommon/RCTTurboModuleManager.h>
 
 #import <react/config/ReactNativeConfig.h>
+#import <React/RCTLinkingManager.h>
 
 static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 
@@ -126,6 +127,12 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 - (id<RCTTurboModule>)getModuleInstanceFromClass:(Class)moduleClass
 {
   return RCTAppSetupDefaultModuleFromClass(moduleClass);
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options
+{
+  return [RCTLinkingManager application:app openURL:url options:options];
 }
 
 #endif

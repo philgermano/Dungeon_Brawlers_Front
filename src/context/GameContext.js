@@ -17,7 +17,7 @@ const GameContextProvider = (props) => {
   const [enemyHealth, setEnemyHealth] = useState(5)
   const [loadDefault, setLoadDefault] = useState(false);
 
-  //enemy direction 0-4 for 4 cardinal directions.
+  //enemy direction 0-3 for 4 cardinal directions. NESW
   const enemyDirection = useRef(Math.round(Math.random() * 4))
 
 //send the current game details back to save the game progress
