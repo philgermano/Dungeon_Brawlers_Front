@@ -81,7 +81,11 @@ const AuthContextProvider = (props) => {
     try {
       const credentials = await auth0.webAuth.authorize({
         scope: "openid offline_access profile email",
-      });
+      }, {
+        //ephemeral stops it storing session cookie. could try WebAuthentication.safariProvider instead of ASWebAuthenticationSession. doesn't allow SSO but might not be worth the hassle.
+        //https://github.com/auth0/Auth0.swift/blob/master/FAQ.md
+        ephemeralSession: DeviceInfo.getSystemName() === 'iOS' ? true : false 
+    });
 
       await SInfo.setItem("accessToken", credentials.accessToken, {});
       await SInfo.setItem("refreshToken", credentials.refreshToken, {});
@@ -94,7 +98,7 @@ const AuthContextProvider = (props) => {
 
   const logout = async () => {
     try {
-      await auth0.webAuth.clearSession({});
+      DeviceInfo.getSystemName() === 'Android' ? await auth0.webAuth.clearSession({ }) : console.log('nothing',  DeviceInfo.getSystemName());
 
       await SInfo.deleteItem("accessToken", {});
       await SInfo.deleteItem("refreshToken", {});
